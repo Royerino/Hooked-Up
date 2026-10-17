@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ddyi15fb6onfc"]
+
+[ext_resource type="Script" uid="uid://dlgyj8uyeqjaw" path="res://level_template.gd" id="1_x24lp"]
+[ext_resource type="PackedScene" uid="uid://f7ejdknal12c" path="res://ganchez.tscn" id="2_x24lp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
+size = Vector2(640, 322)
+
+[sub_resource type="TileSet" id="TileSet_yytfi"]
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "hookable"
+custom_data_layer_0/type = 1
+
+[node name="Level" type="Node2D" unique_id=1165794422]
+script = ExtResource("1_x24lp")
+
+[node name="PlayZone" type="Area2D" parent="." unique_id=1508574074]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZone" unique_id=1778947435]
+position = Vector2(320, 159)
+shape = SubResource("RectangleShape2D_yytfi")
+debug_color = Color(0.9764706, 0.9764706, 0.98039216, 0.078431375)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="PlayZone" unique_id=2091008048]
+texture_filter = 1
+tile_set = SubResource("TileSet_yytfi")
+
+[node name="Respawn" type="Marker2D" parent="PlayZone" unique_id=1697890633]
+position = Vector2(16, 304)
+
+[node name="Ganchez" parent="PlayZone" unique_id=87218500 instance=ExtResource("2_x24lp")]
+position = Vector2(16, 303)
+
+[connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]
