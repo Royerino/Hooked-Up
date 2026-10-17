@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddyi15fb6onfc"]
 
-[ext_resource type="Script" uid="uid://dlgyj8uyeqjaw" path="res://level_template.gd" id="1_x24lp"]
-[ext_resource type="PackedScene" uid="uid://f7ejdknal12c" path="res://ganchez.tscn" id="2_x24lp"]
+[ext_resource type="Script" uid="uid://dlgyj8uyeqjaw" path="res://levels/level_template.gd" id="1_vgt4e"]
+[ext_resource type="PackedScene" uid="uid://f7ejdknal12c" path="res://player/ganchez.tscn" id="2_skox6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(640, 322)
@@ -12,7 +12,7 @@ custom_data_layer_0/name = "hookable"
 custom_data_layer_0/type = 1
 
 [node name="Level" type="Node2D" unique_id=1165794422]
-script = ExtResource("1_x24lp")
+script = ExtResource("1_vgt4e")
 
 [node name="PlayZone" type="Area2D" parent="." unique_id=1508574074]
 
@@ -28,7 +28,7 @@ tile_set = SubResource("TileSet_yytfi")
 [node name="Respawn" type="Marker2D" parent="PlayZone" unique_id=1697890633]
 position = Vector2(16, 304)
 
-[node name="Ganchez" parent="PlayZone" unique_id=87218500 instance=ExtResource("2_x24lp")]
+[node name="Ganchez" parent="PlayZone" unique_id=87218500 instance=ExtResource("2_skox6")]
 position = Vector2(16, 303)
 
 [connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]

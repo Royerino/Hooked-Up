@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1mcpgu7m0r25"
-path="res://.godot/imported/ganchez-right-arm.png-56a9f8c329dab44a2a7bad3ffe4f6e3a.ctex"
+uid="uid://dvimaalalhvlm"
+path="res://.godot/imported/tilemap_packed.png-6415571a0c3fb5eaa9d749131b8eda17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ganchez-right-arm.png"
-dest_files=["res://.godot/imported/ganchez-right-arm.png-56a9f8c329dab44a2a7bad3ffe4f6e3a.ctex"]
+source_file="res://assets/tilesets/tilemap_packed.png"
+dest_files=["res://.godot/imported/tilemap_packed.png-6415571a0c3fb5eaa9d749131b8eda17.ctex"]
 
 [params]
 

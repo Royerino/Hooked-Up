@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxbkvxgnf4l58"
-path="res://.godot/imported/gancho-spritesheet.png-3842616025d639f8c2bc10fd0770fa15.ctex"
+uid="uid://d1mcpgu7m0r25"
+path="res://.godot/imported/ganchez-right-arm.png-fb60a3a447b5472ff1a5fee59f3fdfa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gancho-spritesheet.png"
-dest_files=["res://.godot/imported/gancho-spritesheet.png-3842616025d639f8c2bc10fd0770fa15.ctex"]
+source_file="res://assets/player/ganchez-right-arm.png"
+dest_files=["res://.godot/imported/ganchez-right-arm.png-fb60a3a447b5472ff1a5fee59f3fdfa9.ctex"]
 
 [params]
 

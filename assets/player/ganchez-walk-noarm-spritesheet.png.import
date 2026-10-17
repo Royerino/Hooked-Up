@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjoxxtcrq1k8j"
-path="res://.godot/imported/rope.png-e74995150c9d72eb2ca2c45d4b02a804.ctex"
+uid="uid://cn77pq0a2e1my"
+path="res://.godot/imported/ganchez-walk-noarm-spritesheet.png-42613b8c2e0b20ee34380f18ddc1a2ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/rope.png"
-dest_files=["res://.godot/imported/rope.png-e74995150c9d72eb2ca2c45d4b02a804.ctex"]
+source_file="res://assets/player/ganchez-walk-noarm-spritesheet.png"
+dest_files=["res://.godot/imported/ganchez-walk-noarm-spritesheet.png-42613b8c2e0b20ee34380f18ddc1a2ba.ctex"]
 
 [params]
 

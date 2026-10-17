@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://f7ejdknal12c"]
 
-[ext_resource type="Script" uid="uid://c628yibux5e2u" path="res://ganchez.gd" id="1_cluk8"]
-[ext_resource type="Texture2D" uid="uid://cn77pq0a2e1my" path="res://sprites/ganchez-walk-noarm-spritesheet.png" id="1_y7ihl"]
-[ext_resource type="Texture2D" uid="uid://y863wwgg58h8" path="res://sprites/ganchez-jump-noarm-spritesheet.png" id="2_23fuw"]
-[ext_resource type="Texture2D" uid="uid://d1mcpgu7m0r25" path="res://sprites/ganchez-right-arm.png" id="2_cluk8"]
-[ext_resource type="Texture2D" uid="uid://cxbkvxgnf4l58" path="res://sprites/gancho-spritesheet.png" id="3_tyywi"]
-[ext_resource type="Texture2D" uid="uid://cjoxxtcrq1k8j" path="res://sprites/rope.png" id="4_4scst"]
-[ext_resource type="Texture2D" uid="uid://c7xoutsxnuie3" path="res://sprites/gun.png" id="4_tyywi"]
-[ext_resource type="Script" uid="uid://o70lrluo4mex" path="res://grappling_hook.gd" id="5_4scst"]
+[ext_resource type="Script" uid="uid://c628yibux5e2u" path="res://player/ganchez.gd" id="1_cluk8"]
+[ext_resource type="Texture2D" uid="uid://cn77pq0a2e1my" path="res://assets/player/ganchez-walk-noarm-spritesheet.png" id="1_y7ihl"]
+[ext_resource type="Texture2D" uid="uid://y863wwgg58h8" path="res://assets/player/ganchez-jump-noarm-spritesheet.png" id="2_23fuw"]
+[ext_resource type="Texture2D" uid="uid://d1mcpgu7m0r25" path="res://assets/player/ganchez-right-arm.png" id="2_cluk8"]
+[ext_resource type="Texture2D" uid="uid://cxbkvxgnf4l58" path="res://assets/player/gancho-spritesheet.png" id="3_tyywi"]
+[ext_resource type="Texture2D" uid="uid://cjoxxtcrq1k8j" path="res://assets/player/rope.png" id="4_4scst"]
+[ext_resource type="Texture2D" uid="uid://c7xoutsxnuie3" path="res://assets/player/gun.png" id="4_tyywi"]
+[ext_resource type="Script" uid="uid://o70lrluo4mex" path="res://player/grappling_hook.gd" id="5_4scst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvnar"]
 size = Vector2(19, 29)

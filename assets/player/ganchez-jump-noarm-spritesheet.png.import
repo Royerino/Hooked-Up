@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://y863wwgg58h8"
-path="res://.godot/imported/ganchez-jump-noarm-spritesheet.png-c011f2995009aa328099ab8b3fee41c7.ctex"
+path="res://.godot/imported/ganchez-jump-noarm-spritesheet.png-a529a5463dd3ff22afe44341a4e43c5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ganchez-jump-noarm-spritesheet.png"
-dest_files=["res://.godot/imported/ganchez-jump-noarm-spritesheet.png-c011f2995009aa328099ab8b3fee41c7.ctex"]
+source_file="res://assets/player/ganchez-jump-noarm-spritesheet.png"
+dest_files=["res://.godot/imported/ganchez-jump-noarm-spritesheet.png-a529a5463dd3ff22afe44341a4e43c5f.ctex"]
 
 [params]
 
