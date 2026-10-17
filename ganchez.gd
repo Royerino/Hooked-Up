@@ -6,12 +6,16 @@ const JUMP_VELOCITY = -350.0
 const SWING_FORCE = 400
 const AIR_CONTROL = 600
 
-var is_hooked: bool = false
-var hook_pos: Vector2
-var rope_length: float
+var is_hooked := false
+var controllable := true
+var hook_pos := Vector2.ZERO
+var rope_length := 0.0
 
 
 func _physics_process(delta: float) -> void:
+	if not controllable:
+		return
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -30,18 +34,21 @@ func _physics_process(delta: float) -> void:
 		_correct_rope_position()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if velocity.x != 0 and is_on_floor():
 		$Body.animation = "walk"
+		$Body.play()
+	elif !is_on_floor():
+		$Body.animation = "jump"
 		$Body.play()
 	else:
 		$Body.stop()
 
 	var mouse_pos = get_global_mouse_position()
-	_flipCharOnMousePos(mouse_pos)
+	_flip_char_on_mouse_pos(mouse_pos)
 	
 	var angle = $WeaponPivot.global_position.angle_to_point(mouse_pos)
-	_rotateWeaponPivot(angle)
+	_rotate_weapon_pivot(angle)
 	
 	if Input.is_action_just_pressed("shoot"):
 		$GrapplingHook.shoot()
@@ -50,8 +57,22 @@ func _process(delta: float) -> void:
 		$GrapplingHook.retrieve()
 
 
+func set_controllable(value: bool) -> void:
+	controllable = value
+	if not value:
+		velocity = Vector2.ZERO
+		$GrapplingHook.reset()
+
+
+func respawn_at(pos: Vector2) -> void:
+	global_position = pos
+	velocity = Vector2.ZERO
+	$GrapplingHook.reset()
+	controllable = true
+
+
 # Gira el personaje a izquierda o derecha en base a la posición del ratón.
-func _flipCharOnMousePos(mouse_pos: Vector2) -> void:
+func _flip_char_on_mouse_pos(mouse_pos: Vector2) -> void:
 	var is_mouse_pos_left_of_body = mouse_pos.x < $Body.global_position.x
 	$Body.flip_h = is_mouse_pos_left_of_body
 	$WeaponPivot/Arm.flip_v = is_mouse_pos_left_of_body
@@ -61,7 +82,7 @@ func _flipCharOnMousePos(mouse_pos: Vector2) -> void:
 
 
 # Rota el arma limitando el ángulo a 180 grados por encima del brazo. 
-func _rotateWeaponPivot(angle: float) -> void:
+func _rotate_weapon_pivot(angle: float) -> void:
 	if $Body.flip_h:
 		if angle > 0:
 			angle -= TAU
