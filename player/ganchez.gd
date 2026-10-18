@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -350.0
-const SWING_FORCE = 400
-const AIR_CONTROL = 600
+const AIR_MAX_SPEED = SPEED
+const JUMP_VELOCITY = -425.0
+const SWING_FORCE = 450
+const AIR_CONTROL = 700
+const GRAVITY_SCALE = 1.5
+const JUMP_CUT_FACTOR = 0.5
 
 var is_hooked := false
 var controllable := true
@@ -18,11 +21,14 @@ func _physics_process(delta: float) -> void:
 		
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		var gravity_scale := GRAVITY_SCALE if not is_hooked else 1.0
+		velocity += get_gravity() * gravity_scale * delta
 
 	# Gestión de salto.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	elif Input.is_action_just_released("jump") and velocity.y < 0 and not is_hooked:
+		velocity.y *= JUMP_CUT_FACTOR
 
 	# Gestión de velocidad.
 	var direction := Input.get_axis("move_left", "move_right")
@@ -108,7 +114,9 @@ func _handle_horizontal_movement(direction: float, delta: float) -> void:
 	
 	# En el aire.
 	elif not is_on_floor() and direction:
-		velocity.x += direction * AIR_CONTROL * delta
+		var speed_limit := maxf(absf(velocity.x), AIR_MAX_SPEED)
+		var new_speed := velocity.x + direction * AIR_CONTROL * delta
+		velocity.x = clampf(new_speed, -speed_limit, speed_limit)
 	
 	# En el suelo con movimiento.
 	elif direction:

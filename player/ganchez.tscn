@@ -144,7 +144,6 @@ enabled = false
 exclude_parent = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1889170744]
-position_smoothing_speed = 10.0
 
 [connection signal="hooked" from="GrapplingHook" to="." method="_on_grappling_hook_hooked"]
 [connection signal="released" from="GrapplingHook" to="." method="_on_grappling_hook_released"]
