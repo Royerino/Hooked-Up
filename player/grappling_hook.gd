@@ -7,7 +7,7 @@ signal blocked(point: Vector2, normal: Vector2)
 
 enum State { IDLE, FLYING, RETRACTING, HOOKED }
 
-const ROPE_MAX_LENGTH: float = 300
+const ROPE_MAX_LENGTH: float = 180
 const ROPE_VELOCITY: float = 1500
 
 var state: State = State.IDLE
@@ -16,6 +16,7 @@ var collision_point: Vector2
 
 @export var muzzle: Marker2D
 @export var character: CharacterBody2D
+
 
 func _ready() -> void:
 	$RayCast2D.add_exception(character)

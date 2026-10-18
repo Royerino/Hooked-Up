@@ -8,10 +8,15 @@ var is_respawning := false
 
 @onready var player: CharacterBody2D = $PlayZone/Ganchez
 @onready var respawn_point: Marker2D = $PlayZone/Respawn
+@onready var zone_shape: CollisionShape2D = $PlayZone/CollisionShape2D
 
 
 func _ready() -> void:
 	_place_player()
+	var shape := zone_shape.shape as RectangleShape2D
+	var size: Vector2 = shape.size * zone_shape.global_scale
+	var rect := Rect2(zone_shape.global_position - size / 2.0, size)
+	player.set_camera_limits(rect)
 
 
 func _unhandled_input(event: InputEvent) -> void:

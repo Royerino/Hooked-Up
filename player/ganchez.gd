@@ -71,6 +71,13 @@ func respawn_at(pos: Vector2) -> void:
 	controllable = true
 
 
+func set_camera_limits(rect: Rect2) -> void:
+	$Camera2D.set_limit(SIDE_LEFT, rect.position.x)
+	$Camera2D.set_limit(SIDE_TOP, rect.position.y)
+	$Camera2D.set_limit(SIDE_RIGHT, rect.end.x)
+	$Camera2D.set_limit(SIDE_BOTTOM, rect.end.y)
+
+
 # Gira el personaje a izquierda o derecha en base a la posición del ratón.
 func _flip_char_on_mouse_pos(mouse_pos: Vector2) -> void:
 	var is_mouse_pos_left_of_body = mouse_pos.x < $Body.global_position.x
