@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cjoxxtcrq1k8j" path="res://assets/player/rope.png" id="4_4scst"]
 [ext_resource type="Texture2D" uid="uid://c7xoutsxnuie3" path="res://assets/player/gun.png" id="4_tyywi"]
 [ext_resource type="Script" uid="uid://o70lrluo4mex" path="res://player/grappling_hook.gd" id="5_4scst"]
+[ext_resource type="PackedScene" uid="uid://ckkle6jgrgkay" path="res://player/crosshair.tscn" id="9_ti8mf"]
+[ext_resource type="Texture2D" uid="uid://bei50cn37ecaq" path="res://assets/ui/crosshair/crosshair-121.svg" id="10_56q7g"]
+[ext_resource type="Texture2D" uid="uid://mi3vcj2c5ile" path="res://assets/ui/crosshair/crosshair-120.svg" id="11_mfogd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvnar"]
 size = Vector2(19, 29)
@@ -124,6 +127,9 @@ texture = ExtResource("4_tyywi")
 position = Vector2(16, 0)
 gizmo_extents = 1.0
 
+[node name="RayCast2D" type="RayCast2D" parent="WeaponPivot/Muzzle" unique_id=210472564]
+target_position = Vector2(180, 0)
+
 [node name="GrapplingHook" type="Node2D" parent="." unique_id=765887971 node_paths=PackedStringArray("muzzle", "character")]
 top_level = true
 script = ExtResource("5_4scst")
@@ -144,6 +150,12 @@ enabled = false
 exclude_parent = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1889170744]
+
+[node name="Crosshair" parent="." unique_id=1416019658 node_paths=PackedStringArray("gun_raycast", "grappling_hook") instance=ExtResource("9_ti8mf")]
+gun_raycast = NodePath("../WeaponPivot/Muzzle/RayCast2D")
+grappling_hook = NodePath("../GrapplingHook")
+texture_hookable = ExtResource("10_56q7g")
+texture_blocked = ExtResource("11_mfogd")
 
 [connection signal="hooked" from="GrapplingHook" to="." method="_on_grappling_hook_hooked"]
 [connection signal="released" from="GrapplingHook" to="." method="_on_grappling_hook_released"]

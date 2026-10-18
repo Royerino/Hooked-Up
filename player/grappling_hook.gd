@@ -1,4 +1,4 @@
-extends Node2D
+class_name GrapplingHook extends Node2D
 
 
 signal hooked(point: Vector2)
@@ -66,6 +66,17 @@ func retrieve() -> void:
 	state = State.RETRACTING
 
 
+func is_hookable(collider: Object, point: Vector2, normal: Vector2) -> bool:
+	if collider is TileMapLayer:
+		# Un pequeño paso hacia dentro del tile, para no caer en el borde entre celdas.
+		var inside: Vector2 = point - normal
+		var cell: Vector2i = collider.local_to_map(collider.to_local(inside))
+		var data: TileData = collider.get_cell_tile_data(cell)
+		return data != null and bool(data.get_custom_data("hookable"))
+	# Para objetos que no son tiles.
+	return collider is Node and collider.is_in_group("hookable")
+
+
 func _process_flying(delta: float) -> void:
 	var current_pos = $Rope.get_point_position(1)
 	var new_pos: Vector2 = current_pos + direction * ROPE_VELOCITY * delta
@@ -122,7 +133,7 @@ func _manage_collision() -> void:
 	var point: Vector2 = $RayCast2D.get_collision_point()
 	var normal: Vector2 = $RayCast2D.get_collision_normal()
 
-	if _is_hookable($RayCast2D.get_collider(), point, normal):
+	if is_hookable($RayCast2D.get_collider(), point, normal):
 		state = State.HOOKED
 		collision_point = point
 		_set_hook_position(point)
@@ -130,14 +141,3 @@ func _manage_collision() -> void:
 	else:
 		blocked.emit(point, normal)
 		retrieve()
-
-
-func _is_hookable(collider: Object, point: Vector2, normal: Vector2) -> bool:
-	if collider is TileMapLayer:
-		# Un pequeño paso hacia dentro del tile, para no caer en el borde entre celdas.
-		var inside: Vector2 = point - normal
-		var cell: Vector2i = collider.local_to_map(collider.to_local(inside))
-		var data: TileData = collider.get_cell_tile_data(cell)
-		return data != null and bool(data.get_custom_data("hookable"))
-	# Para objetos que no son tiles.
-	return collider is Node and collider.is_in_group("hookable")
