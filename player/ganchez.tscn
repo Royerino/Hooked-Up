@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://mi3vcj2c5ile" path="res://assets/ui/crosshair/crosshair-120.svg" id="11_mfogd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvnar"]
-size = Vector2(19, 29)
+size = Vector2(32, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omhox"]
 atlas = ExtResource("2_23fuw")
@@ -99,7 +99,7 @@ region = Rect2(9, 73, 13, 13)
 script = ExtResource("1_cluk8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2054187335]
-position = Vector2(-3.5, 1.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_jvnar")
 
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=2027633116]
@@ -128,7 +128,7 @@ position = Vector2(16, 0)
 gizmo_extents = 1.0
 
 [node name="RayCast2D" type="RayCast2D" parent="WeaponPivot/Muzzle" unique_id=210472564]
-target_position = Vector2(180, 0)
+target_position = Vector2(200, 0)
 
 [node name="GrapplingHook" type="Node2D" parent="." unique_id=765887971 node_paths=PackedStringArray("muzzle", "character")]
 top_level = true

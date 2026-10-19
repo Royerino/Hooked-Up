@@ -73,8 +73,7 @@ func is_hookable(collider: Object, point: Vector2, normal: Vector2) -> bool:
 		var cell: Vector2i = collider.local_to_map(collider.to_local(inside))
 		var data: TileData = collider.get_cell_tile_data(cell)
 		return data != null and bool(data.get_custom_data("hookable"))
-	# Para objetos que no son tiles.
-	return collider is Node and collider.is_in_group("hookable")
+	return false
 
 
 func _process_flying(delta: float) -> void:
