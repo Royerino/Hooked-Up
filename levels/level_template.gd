@@ -9,10 +9,12 @@ var is_respawning := false
 @onready var player: CharacterBody2D = $PlayZone/Ganchez
 @onready var respawn_point: Marker2D = $PlayZone/Respawn
 @onready var zone_shape: CollisionShape2D = $PlayZone/CollisionShape2D
+@onready var checkpoints: Node2D = $PlayZone/Checkpoints
 
 
 func _ready() -> void:
 	_place_player()
+	_connect_checkpoints()
 	var shape := zone_shape.shape as RectangleShape2D
 	var size: Vector2 = shape.size * zone_shape.global_scale
 	var rect := Rect2(zone_shape.global_position - size / 2.0, size)
@@ -47,3 +49,12 @@ func _on_play_zone_body_exited(body: Node2D) -> void:
 	if body != player or is_finished or is_respawning:
 		return
 	_kill_player()
+	
+
+func _connect_checkpoints() -> void:
+	for checkpoint: Checkpoint in checkpoints.get_children():
+		checkpoint.activated.connect(_on_checkpoint_activated)
+
+
+func _on_checkpoint_activated(checkpoint: Checkpoint) -> void:
+	respawn_point.global_position = checkpoint.get_respawn_position()
