@@ -4,7 +4,7 @@ class_name Ganchez extends CharacterBody2D
 const SPEED = 300.0
 const AIR_MAX_SPEED = SPEED
 const JUMP_VELOCITY = -425.0
-const SWING_FORCE = 450
+const SWING_FORCE = 300
 const AIR_CONTROL = 700
 const GRAVITY_SCALE = 1.5
 const JUMP_CUT_FACTOR = 0.5
