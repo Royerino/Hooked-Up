@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dhp4ktnjmb7nm"]
+
+[ext_resource type="Script" uid="uid://i24bbymeanmb" path="res://player/goal.gd" id="1_p4khn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
+
+[node name="Goal" type="Area2D" unique_id=1815908131]
+script = ExtResource("1_p4khn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=163718218]
+shape = SubResource("RectangleShape2D_yytfi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

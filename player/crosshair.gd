@@ -7,12 +7,10 @@ extends CanvasLayer
 @export var texture_blocked: Texture2D
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	$Sprite2D.position = get_viewport().get_mouse_position()
 	if not gun_raycast.is_colliding():

@@ -1,6 +1,8 @@
 extends Node2D
 
 
+signal finished
+
 const RESPAWN_TIME := 0.3
 
 var is_finished := false
@@ -58,3 +60,10 @@ func _connect_checkpoints() -> void:
 
 func _on_checkpoint_activated(checkpoint: Checkpoint) -> void:
 	respawn_point.global_position = checkpoint.get_respawn_position()
+
+
+func _on_goal_reached() -> void:
+	if is_finished:
+		return
+	is_finished = true
+	finished.emit()

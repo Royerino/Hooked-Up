@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hooked Up"
-run/main_scene="uid://ddyi15fb6onfc"
+run/main_scene="uid://bjilw5multbea"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

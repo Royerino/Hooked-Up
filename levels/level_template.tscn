@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://f7ejdknal12c" path="res://player/ganchez.tscn" id="2_skox6"]
 [ext_resource type="Texture2D" uid="uid://44150g0cm5bc" path="res://assets/tilesets/tilemap-backgrounds_packed.png" id="4_13k7l"]
 [ext_resource type="PackedScene" uid="uid://dh210asxriydr" path="res://player/checkpoint.tscn" id="5_8xmsw"]
+[ext_resource type="PackedScene" uid="uid://dhp4ktnjmb7nm" path="res://player/goal.tscn" id="6_yglgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(1616, 362)
@@ -395,4 +396,9 @@ tile_set = SubResource("TileSet_jvnar")
 texture_activated = SubResource("AtlasTexture_r6hke")
 texture_not_activated = SubResource("AtlasTexture_tnhlw")
 
+[node name="Goal" parent="PlayZone" unique_id=1815908131 instance=ExtResource("6_yglgk")]
+position = Vector2(1591.9999, 216)
+scale = Vector2(2.4506524, 12.9750595)
+
 [connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]
+[connection signal="reached" from="PlayZone/Goal" to="." method="_on_goal_reached"]
