@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvimaalalhvlm" path="res://assets/tilesets/tilemap_packed.png" id="2_13k7l"]
 [ext_resource type="PackedScene" uid="uid://f7ejdknal12c" path="res://player/ganchez.tscn" id="2_skox6"]
 [ext_resource type="Texture2D" uid="uid://44150g0cm5bc" path="res://assets/tilesets/tilemap-backgrounds_packed.png" id="4_13k7l"]
-[ext_resource type="PackedScene" uid="uid://dh210asxriydr" path="res://checkpoint.tscn" id="5_8xmsw"]
+[ext_resource type="PackedScene" uid="uid://dh210asxriydr" path="res://player/checkpoint.tscn" id="5_8xmsw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(1616, 362)
@@ -354,6 +354,14 @@ texture_region_size = Vector2i(24, 24)
 tile_size = Vector2i(24, 24)
 sources/1 = SubResource("TileSetAtlasSource_13k7l")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6hke"]
+atlas = ExtResource("2_13k7l")
+region = Rect2(163, 136, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnhlw"]
+atlas = ExtResource("2_13k7l")
+region = Rect2(145, 136, 16, 8)
+
 [node name="Level" type="Node2D" unique_id=1165794422]
 script = ExtResource("1_vgt4e")
 
@@ -384,5 +392,7 @@ tile_set = SubResource("TileSet_jvnar")
 [node name="Checkpoints" type="Node2D" parent="PlayZone" unique_id=2001044487]
 
 [node name="Checkpoint" parent="PlayZone/Checkpoints" unique_id=1358784807 instance=ExtResource("5_8xmsw")]
+texture_activated = SubResource("AtlasTexture_r6hke")
+texture_not_activated = SubResource("AtlasTexture_tnhlw")
 
 [connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]
