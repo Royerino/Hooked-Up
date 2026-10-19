@@ -42,13 +42,11 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	if velocity.x != 0 and is_on_floor():
-		$Body.animation = "walk"
-		$Body.play()
+		$Body.play("walk")
 	elif !is_on_floor():
-		$Body.animation = "jump"
-		$Body.play()
+		$Body.play("jump")
 	else:
-		$Body.stop()
+		$Body.play("idle")
 
 	var mouse_pos = get_global_mouse_position()
 	_flip_char_on_mouse_pos(mouse_pos)

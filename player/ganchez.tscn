@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cn77pq0a2e1my" path="res://assets/player/ganchez-walk-noarm-spritesheet.png" id="1_y7ihl"]
 [ext_resource type="Texture2D" uid="uid://y863wwgg58h8" path="res://assets/player/ganchez-jump-noarm-spritesheet.png" id="2_23fuw"]
 [ext_resource type="Texture2D" uid="uid://d1mcpgu7m0r25" path="res://assets/player/ganchez-right-arm.png" id="2_cluk8"]
+[ext_resource type="Texture2D" uid="uid://sf5e4rvphp2n" path="res://assets/player/ganchez-idle-noarm-spritesheet.png" id="2_mfogd"]
 [ext_resource type="Texture2D" uid="uid://cxbkvxgnf4l58" path="res://assets/player/gancho-spritesheet.png" id="3_tyywi"]
 [ext_resource type="Texture2D" uid="uid://cjoxxtcrq1k8j" path="res://assets/player/rope.png" id="4_4scst"]
 [ext_resource type="Texture2D" uid="uid://c7xoutsxnuie3" path="res://assets/player/gun.png" id="4_tyywi"]
@@ -14,6 +15,26 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvnar"]
 size = Vector2(32, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfogd"]
+atlas = ExtResource("2_mfogd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_487ob"]
+atlas = ExtResource("2_mfogd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06jn4"]
+atlas = ExtResource("2_mfogd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekty2"]
+atlas = ExtResource("2_mfogd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxaja"]
+atlas = ExtResource("2_mfogd")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omhox"]
 atlas = ExtResource("2_23fuw")
@@ -53,6 +74,26 @@ region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jvnar"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfogd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_487ob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06jn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekty2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxaja")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_omhox")
@@ -105,7 +146,7 @@ shape = SubResource("RectangleShape2D_jvnar")
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=2027633116]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_jvnar")
-animation = &"jump"
+animation = &"idle"
 
 [node name="WeaponPivot" type="Node2D" parent="." unique_id=1881269194]
 position = Vector2(3, -7)
