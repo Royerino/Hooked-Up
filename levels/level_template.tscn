@@ -1,11 +1,11 @@
 [gd_scene format=4 uid="uid://ddyi15fb6onfc"]
 
 [ext_resource type="Script" uid="uid://dlgyj8uyeqjaw" path="res://levels/level_template.gd" id="1_vgt4e"]
-[ext_resource type="Texture2D" uid="uid://dvimaalalhvlm" path="res://assets/tilesets/tilemap_packed.png" id="2_13k7l"]
+[ext_resource type="Texture2D" uid="uid://dvimaalalhvlm" path="res://assets/tilesets/Pixel platformer/tilemap_packed.png" id="2_13k7l"]
 [ext_resource type="PackedScene" uid="uid://f7ejdknal12c" path="res://player/ganchez.tscn" id="2_skox6"]
-[ext_resource type="Texture2D" uid="uid://44150g0cm5bc" path="res://assets/tilesets/tilemap-backgrounds_packed.png" id="4_13k7l"]
-[ext_resource type="PackedScene" uid="uid://dh210asxriydr" path="res://player/checkpoint.tscn" id="5_8xmsw"]
-[ext_resource type="PackedScene" uid="uid://dhp4ktnjmb7nm" path="res://player/goal.tscn" id="6_yglgk"]
+[ext_resource type="Texture2D" uid="uid://44150g0cm5bc" path="res://assets/tilesets/Pixel platformer/tilemap-backgrounds_packed.png" id="4_13k7l"]
+[ext_resource type="PackedScene" uid="uid://dh210asxriydr" path="res://objects/checkpoint.tscn" id="5_8xmsw"]
+[ext_resource type="PackedScene" uid="uid://dhp4ktnjmb7nm" path="res://objects/goal.tscn" id="6_yglgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(1616, 362)
