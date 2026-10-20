@@ -137,6 +137,7 @@ atlas = ExtResource("3_tyywi")
 region = Rect2(9, 73, 13, 13)
 
 [node name="Ganchez" type="CharacterBody2D" unique_id=87218500]
+platform_on_leave = 2
 script = ExtResource("1_cluk8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2054187335]

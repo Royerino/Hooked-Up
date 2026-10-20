@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://douhxnnh2e7t1"]
+
+[ext_resource type="Script" uid="uid://bt6we6b6f3bpe" path="res://objects/moving_platform.gd" id="1_6vpaq"]
+[ext_resource type="Texture2D" uid="uid://dp7ma63exskon" path="res://assets/tilesets/Pixel platformer industrial/tilemap_packed.png" id="1_uu147"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvnar"]
+size = Vector2(48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yytfi"]
+atlas = ExtResource("1_uu147")
+region = Rect2(128, 92, 44, 14)
+
+[node name="MovingPlatform" type="Node2D" unique_id=1469679414]
+script = ExtResource("1_6vpaq")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=2108252994]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=389136098]
+shape = SubResource("RectangleShape2D_jvnar")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1630589524]
+texture = SubResource("AtlasTexture_yytfi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D" unique_id=506519879]
