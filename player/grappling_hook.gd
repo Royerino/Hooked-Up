@@ -13,28 +13,34 @@ const ROPE_VELOCITY: float = 1500
 var state: State = State.IDLE
 var direction: Vector2
 var collision_point: Vector2
+var collision_node: Node2D
+var collision_offset: Vector2
 
 @export var muzzle: Marker2D
 @export var character: CharacterBody2D
 
+@onready var raycast: RayCast2D = $RayCast2D
+@onready var rope: Line2D = $Rope
+@onready var hook: Sprite2D = $Hook
+
 
 func _ready() -> void:
-	$RayCast2D.add_exception(character)
+	raycast.add_exception(character)
 
 
 func _process(delta: float) -> void:
 	if state != State.IDLE:
-		$Rope.set_point_position(0, muzzle.global_position)
+		rope.set_point_position(0, muzzle.global_position)
 		
 	match state:
 		State.RETRACTING:
 			_process_retracting(delta)
-		State.HOOKED:
-			_process_hooked(delta)
 
 
 func _physics_process(delta: float) -> void:
 	match state:
+		State.HOOKED:
+			_process_hooked(delta)
 		State.FLYING:
 			_process_flying(delta)
 
@@ -43,14 +49,14 @@ func shoot() -> void:
 	if state != State.IDLE:
 		return
 
-	$Rope.visible = true
-	$Hook.visible = true
+	rope.visible = true
+	hook.visible = true
 
-	$Rope.add_point(muzzle.global_position)
-	$Rope.add_point(muzzle.global_position)
+	rope.add_point(muzzle.global_position)
+	rope.add_point(muzzle.global_position)
 
-	$Hook.position = muzzle.global_position
-	$Hook.rotation = muzzle.global_rotation
+	hook.position = muzzle.global_position
+	hook.rotation = muzzle.global_rotation
 	direction = Vector2.from_angle(muzzle.global_rotation)
 
 	state = State.FLYING
@@ -73,18 +79,19 @@ func is_hookable(collider: Object, point: Vector2, normal: Vector2) -> bool:
 		var cell: Vector2i = collider.local_to_map(collider.to_local(inside))
 		var data: TileData = collider.get_cell_tile_data(cell)
 		return data != null and bool(data.get_custom_data("hookable"))
-	return false
+	# También se puede enganchar nodos en el grupo hookable. 
+	return collider is Node and collider.is_in_group("hookable")
 
 
 func _process_flying(delta: float) -> void:
-	var current_pos = $Rope.get_point_position(1)
+	var current_pos = rope.get_point_position(1)
 	var new_pos: Vector2 = current_pos + direction * ROPE_VELOCITY * delta
 	
 	# El RayCast mira si en la siguiente posición hay colisión y la gestiona.
-	$RayCast2D.global_position = current_pos
-	$RayCast2D.target_position = new_pos - current_pos
-	$RayCast2D.force_raycast_update()
-	if $RayCast2D.is_colliding():
+	raycast.global_position = current_pos
+	raycast.target_position = new_pos - current_pos
+	raycast.force_raycast_update()
+	if raycast.is_colliding():
 		return _manage_collision()
 	
 	_set_hook_position(new_pos)
@@ -96,7 +103,7 @@ func _process_flying(delta: float) -> void:
 
 func _process_retracting(delta: float) -> void:
 	var step: float = ROPE_VELOCITY * delta
-	var hook_pos: Vector2 = $Rope.get_point_position(1)
+	var hook_pos: Vector2 = rope.get_point_position(1)
 	
 	# Si queda menos distancia que lo que avanzaría este frame, borramos el gancho.
 	if hook_pos.distance_to(muzzle.global_position) <= step:
@@ -107,34 +114,44 @@ func _process_retracting(delta: float) -> void:
 		_set_hook_position(hook_pos + return_dir * step)
 
 
-func _process_hooked(_delta: float) -> void:
+func _process_hooked(delta: float) -> void:
+	if not is_instance_valid(collision_node):
+		return _process_retracting(delta)
+		
+	collision_point = collision_node.to_global(collision_offset)
+	_set_hook_position(collision_point)
 	# TODO: Añadir partículas en el lugar de impacto del gancho.
-	pass
 
 
 func _set_hook_position(pos: Vector2) -> void:
-	$Rope.set_point_position(1, pos)
-	$Hook.position = pos
+	rope.set_point_position(1, pos)
+	hook.position = pos
 
 
 func reset() -> void:
 	var was_hooked := state == State.HOOKED
 	state = State.IDLE
-	$Hook.visible = false
-	$Rope.visible = false
-	$Rope.clear_points()
+	hook.visible = false
+	rope.visible = false
+	collision_point = Vector2.ZERO
+	collision_node = null
+	collision_offset = Vector2.ZERO
+	rope.clear_points()
 	if was_hooked:
 		released.emit()
 
 
 # Si el gancho colisiona contra una superficie válida, se fija en esa posición. Si no, rebota.
 func _manage_collision() -> void:
-	var point: Vector2 = $RayCast2D.get_collision_point()
-	var normal: Vector2 = $RayCast2D.get_collision_normal()
+	var point: Vector2 = raycast.get_collision_point()
+	var normal: Vector2 = raycast.get_collision_normal()
+	var collider: Node2D = raycast.get_collider()
 
-	if is_hookable($RayCast2D.get_collider(), point, normal):
+	if is_hookable(collider, point, normal):
 		state = State.HOOKED
 		collision_point = point
+		collision_node = collider
+		collision_offset = collision_node.to_local(point)
 		_set_hook_position(point)
 		hooked.emit(point)
 	else:

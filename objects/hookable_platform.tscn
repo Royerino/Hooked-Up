@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cfkxsvavhgqpd"]
+
+[ext_resource type="PackedScene" uid="uid://douhxnnh2e7t1" path="res://objects/moving_platform.tscn" id="1_ov8eq"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0rtgj"]
+points = PackedVector2Array(-22, -7, 22, -7, 22, 7, 6, 7, 6, 24, -6, 24, -6, 7, -22, 7)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ov8eq"]
+load_path = "res://.godot/imported/tilemap_packed.png-f9aa3e8e2bab0a339315163b5ead92bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbe5b"]
+atlas = SubResource("CompressedTexture2D_ov8eq")
+region = Rect2(129, 74, 11, 16)
+
+[node name="HookablePlatform" unique_id=1469679414 instance=ExtResource("1_ov8eq")]
+
+[node name="AnimatableBody2D" parent="." index="0" unique_id=2108252994 groups=["hookable"]]
+
+[node name="CollisionShape2D" parent="AnimatableBody2D" index="0" unique_id=389136098]
+shape = SubResource("ConvexPolygonShape2D_0rtgj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="AnimatableBody2D" index="2" unique_id=248853637]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_wbe5b")
