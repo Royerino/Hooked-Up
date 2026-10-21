@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cncyju3cpulhw" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bkw00l4v86tm7" path="res://levels/level_test1.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://drcgpfutlou4t" path="res://levels/level_test2.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node" unique_id=386207007]
 script = ExtResource("1_ig7tw")
-scenes = Array[PackedScene]([ExtResource("2_0xm2m")])
+scenes = Array[PackedScene]([ExtResource("2_0xm2m"), ExtResource("3_h2yge")])
