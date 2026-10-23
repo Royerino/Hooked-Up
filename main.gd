@@ -23,4 +23,4 @@ func _on_level_finished() -> void:
 	current_level.queue_free()
 	current_level_index += 1
 	if current_level_index < scenes.size():
-		_load_level()
+		call_deferred("_load_level")
