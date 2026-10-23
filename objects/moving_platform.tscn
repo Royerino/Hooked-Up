@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://bt6we6b6f3bpe" path="res://objects/moving_platform.gd" id="1_6vpaq"]
 [ext_resource type="Texture2D" uid="uid://dp7ma63exskon" path="res://assets/tilesets/Pixel platformer industrial/tilemap_packed.png" id="1_uu147"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvnar"]
-size = Vector2(48, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yytfi"]
 atlas = ExtResource("1_uu147")
 region = Rect2(128, 92, 44, 14)
@@ -15,8 +12,10 @@ script = ExtResource("1_6vpaq")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=2108252994]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=389136098]
-shape = SubResource("RectangleShape2D_jvnar")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D" unique_id=1164067874]
+position = Vector2(-1.6987324e-06, 7.4505806e-07)
+scale = Vector2(0.93749994, 0.93749994)
+polygon = PackedVector2Array(-24, -8, 24, -8, 24, 8, -24, 8)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1630589524]
 texture = SubResource("AtlasTexture_yytfi")

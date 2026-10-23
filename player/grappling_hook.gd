@@ -81,6 +81,12 @@ func is_hookable(collider: Object, point: Vector2, normal: Vector2) -> bool:
 		return data != null and bool(data.get_custom_data("hookable"))
 	# También se puede enganchar nodos en el grupo hookable. 
 	return collider is Node and collider.is_in_group("hookable")
+	
+	
+func get_anchor_position() -> Vector2:
+	if is_instance_valid(collision_node):
+		return collision_node.to_global(collision_offset)
+	return collision_point
 
 
 func _process_flying(delta: float) -> void:

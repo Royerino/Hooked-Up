@@ -2,9 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://douhxnnh2e7t1" path="res://objects/moving_platform.tscn" id="1_ov8eq"]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0rtgj"]
-points = PackedVector2Array(-22, -7, 22, -7, 22, 7, 6, 7, 6, 24, -6, 24, -6, 7, -22, 7)
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ov8eq"]
 load_path = "res://.godot/imported/tilemap_packed.png-f9aa3e8e2bab0a339315163b5ead92bc.ctex"
 
@@ -16,8 +13,8 @@ region = Rect2(129, 74, 11, 16)
 
 [node name="AnimatableBody2D" parent="." index="0" unique_id=2108252994 groups=["hookable"]]
 
-[node name="CollisionShape2D" parent="AnimatableBody2D" index="0" unique_id=389136098]
-shape = SubResource("ConvexPolygonShape2D_0rtgj")
+[node name="CollisionPolygon2D" parent="AnimatableBody2D" index="0" unique_id=1164067874]
+polygon = PackedVector2Array(-24, -8, 24, -8, 24, 8, 5.3333354, 8.533333, 5.3333354, 23.466667, 3.2000022, 25.600002, -3.1999984, 25.600002, -5.3333316, 23.466667, -5.3333316, 8.533333, -24, 8)
 
 [node name="Sprite2D2" type="Sprite2D" parent="AnimatableBody2D" index="2" unique_id=248853637]
 position = Vector2(0, 16)

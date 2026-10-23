@@ -28,4 +28,5 @@ func _ready() -> void:
 	var library := AnimationLibrary.new()
 	library.add_animation("movement", animation)
 	animation_player.add_animation_library("", library)
+	animation_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
 	animation_player.play("movement")
