@@ -1,0 +1,261 @@
+[gd_scene format=3 uid="uid://wwy27udnj8ri"]
+
+[ext_resource type="Script" uid="uid://bp2ugvp42d7ko" path="res://ui/start_screen.gd" id="1_0gt6g"]
+[ext_resource type="Texture2D" uid="uid://daibsp4vk6iiq" path="res://assets/ui/logo/logo.png" id="1_s6cxg"]
+[ext_resource type="Texture2D" uid="uid://d18pdyhjv2rp7" path="res://assets/textures/Metal038_1K-PNG_Color.png" id="2_7n3jn"]
+[ext_resource type="Texture2D" uid="uid://ps60rw3t4ncu" path="res://assets/ui/inputs/keyboard_a.png" id="2_a8ycg"]
+[ext_resource type="Texture2D" uid="uid://d163jl15yi72u" path="res://assets/ui/inputs/keyboard_d.png" id="3_7pkrh"]
+[ext_resource type="Texture2D" uid="uid://loscqtnsdl3l" path="res://assets/ui/inputs/keyboard_arrows_left.png" id="4_8cpes"]
+[ext_resource type="Texture2D" uid="uid://udu31k8flibq" path="res://assets/ui/inputs/keyboard_arrows_right.png" id="5_q260t"]
+[ext_resource type="Texture2D" uid="uid://bwwc6u17pvkco" path="res://assets/ui/inputs/keyboard_w.png" id="6_65fpc"]
+[ext_resource type="Texture2D" uid="uid://d2djs1v7422p" path="res://assets/ui/inputs/keyboard_space.png" id="7_0gt6g"]
+[ext_resource type="Texture2D" uid="uid://cmb56rmlit2r1" path="res://assets/ui/inputs/keyboard_arrows_up.png" id="8_7n3jn"]
+[ext_resource type="Texture2D" uid="uid://dl1r5uxytocw5" path="res://assets/ui/inputs/mouse_left.png" id="9_vdmp8"]
+[ext_resource type="Texture2D" uid="uid://bjnnakyjg6c3c" path="res://assets/ui/inputs/keyboard_r.png" id="10_8w0ly"]
+
+[sub_resource type="Gradient" id="Gradient_jvnar"]
+interpolation_mode = 2
+colors = PackedColorArray(0.18431373, 0.43529412, 0.81960785, 1, 0.078431375, 0.1882353, 0.37254903, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yytfi"]
+gradient = SubResource("Gradient_jvnar")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1.1, 0.5)
+
+[node name="StartScreen" type="Control" unique_id=653104570]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0gt6g")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2011108865]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yytfi")
+expand_mode = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1915215555]
+repeat_size = Vector2(1024, 1024)
+autoscroll = Vector2(25, 25)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1173214645]
+modulate = Color(1, 1, 1, 0.19607843)
+texture_filter = 2
+position = Vector2(-176, -280)
+texture = ExtResource("2_7n3jn")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1764365097]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=835081094]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=821325232]
+custom_minimum_size = Vector2(270, 180)
+layout_mode = 2
+texture = ExtResource("1_s6cxg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1216514430]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Controls" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1871685837]
+layout_mode = 2
+
+[node name="MoveRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Controls" unique_id=451794107]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Controls/MoveRow" unique_id=1700245905]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "Moverse"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KeyA" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/MoveRow" unique_id=1643130408]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_a8ycg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyD" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/MoveRow" unique_id=2039884788]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("3_7pkrh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Separator" type="Label" parent="CenterContainer/VBoxContainer/Controls/MoveRow" unique_id=543119600]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 12
+text = "/"
+vertical_alignment = 1
+
+[node name="KeyLeft" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/MoveRow" unique_id=1725835806]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("4_8cpes")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyRight" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/MoveRow" unique_id=582733292]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_q260t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="JumpRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Controls" unique_id=577855572]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=860393804]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "Saltar"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KeyW" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=878122831]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("6_65fpc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Separator" type="Label" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=1466465072]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "/"
+vertical_alignment = 1
+
+[node name="KeySpace" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=2129779331]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("7_0gt6g")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Separator2" type="Label" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=1716049582]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "/"
+vertical_alignment = 1
+
+[node name="KeyUp" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=210795146]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("8_7n3jn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HookRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Controls" unique_id=388773010]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Controls/HookRow" unique_id=1595403012]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "Gancho"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LeftClick" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/HookRow" unique_id=412364380]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("9_vdmp8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/Controls/HookRow" unique_id=2030789231]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "(mantener pulsado)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ResetRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Controls" unique_id=1204857015]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Controls/ResetRow" unique_id=818852338]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "Reiniciar"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LeftClick" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/ResetRow" unique_id=1410769393]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("10_8w0ly")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1721644174]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Prompt" type="Label" parent="CenterContainer/VBoxContainer" unique_id=454941888]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 12
+text = "Pulsa cualquier tecla para empezar"
+horizontal_alignment = 1
