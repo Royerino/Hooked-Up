@@ -591,29 +591,24 @@ visible = false
 tile_map_data = PackedByteArray()
 
 [node name="Checkpoint" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="0" unique_id=1358784807]
-position = Vector2(320, 336)
-
-[node name="Checkpoint2" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="1" unique_id=1839489510 instance=ExtResource("4_n0wgr")]
 position = Vector2(1032, 336)
-texture_activated = SubResource("AtlasTexture_r6hke")
-texture_not_activated = SubResource("AtlasTexture_tnhlw")
 
-[node name="Checkpoint3" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="2" unique_id=1209689840 instance=ExtResource("4_n0wgr")]
+[node name="Checkpoint2" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="1" unique_id=1209689840 instance=ExtResource("4_n0wgr")]
 position = Vector2(2016, 336)
 texture_activated = SubResource("AtlasTexture_r6hke")
 texture_not_activated = SubResource("AtlasTexture_tnhlw")
 
-[node name="Checkpoint4" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="3" unique_id=1986160780 instance=ExtResource("4_n0wgr")]
+[node name="Checkpoint3" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="2" unique_id=1986160780 instance=ExtResource("4_n0wgr")]
 position = Vector2(3080, 336)
 texture_activated = SubResource("AtlasTexture_r6hke")
 texture_not_activated = SubResource("AtlasTexture_tnhlw")
 
-[node name="Checkpoint5" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="4" unique_id=1855999202 instance=ExtResource("4_n0wgr")]
+[node name="Checkpoint4" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="3" unique_id=1855999202 instance=ExtResource("4_n0wgr")]
 position = Vector2(4384, 336)
 texture_activated = SubResource("AtlasTexture_r6hke")
 texture_not_activated = SubResource("AtlasTexture_tnhlw")
 
-[node name="Checkpoint6" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="5" unique_id=1667000019 instance=ExtResource("4_n0wgr")]
+[node name="Checkpoint5" parent="PlayZone/Checkpoints" parent_id_path=PackedInt32Array(2001044487) index="4" unique_id=1667000019 instance=ExtResource("4_n0wgr")]
 position = Vector2(5664, 336)
 texture_activated = SubResource("AtlasTexture_r6hke")
 texture_not_activated = SubResource("AtlasTexture_tnhlw")
