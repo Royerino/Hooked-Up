@@ -28,8 +28,10 @@ func _physics_process(delta: float) -> void:
 	if not controllable:
 		return
 		
-	# Si está enganchado se calcula la velocidad del objeto al que está enganchado y su posición.
+	# Gestiona la recogida de cuerda si está enganchado. 
+	# También se calcula la velocidad del objeto al que está enganchado y su posición.
 	if is_hooked:
+		_reel_rope(delta)
 		var new_hook_pos: Vector2 = grappling_hook.get_anchor_position()
 		anchor_velocity = (new_hook_pos - hook_pos) / delta
 		hook_pos = new_hook_pos
@@ -160,6 +162,14 @@ func _correct_rope_position(delta: float) -> void:
 	var next_anchor: Vector2 = hook_pos + anchor_velocity * delta
 	if next_anchor.distance_to(global_position) > rope_length:
 		global_position = next_anchor + next_anchor.direction_to(global_position) * rope_length
+
+
+func _reel_rope(delta: float) -> void:
+	var rope_input := Input.get_axis("rope_shorten", "rope_extend")
+	var new_rope_length := rope_length + (rope_input * grappling_hook.ROPE_REEL_SPEED * delta)
+	var rope_max_limit := maxf(grappling_hook.ROPE_MAX_LENGTH, rope_length)
+	var rope_min_limit := minf(grappling_hook.ROPE_MIN_LENGTH, rope_length)
+	rope_length = clampf(new_rope_length, rope_min_limit, rope_max_limit)
 
 
 func _on_grappling_hook_hooked(collision_point: Vector2) -> void:

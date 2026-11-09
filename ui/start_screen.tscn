@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cmb56rmlit2r1" path="res://assets/ui/inputs/keyboard_arrows_up.png" id="8_7n3jn"]
 [ext_resource type="Texture2D" uid="uid://dl1r5uxytocw5" path="res://assets/ui/inputs/mouse_left.png" id="9_vdmp8"]
 [ext_resource type="Texture2D" uid="uid://bjnnakyjg6c3c" path="res://assets/ui/inputs/keyboard_r.png" id="10_8w0ly"]
+[ext_resource type="Texture2D" uid="uid://7s67bswa3cln" path="res://assets/ui/inputs/keyboard_s.png" id="11_vdmp8"]
 
 [sub_resource type="Gradient" id="Gradient_jvnar"]
 interpolation_mode = 2
@@ -148,23 +149,6 @@ text = "Saltar"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="KeyW" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=878122831]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("6_65fpc")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Separator" type="Label" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=1466465072]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
-theme_override_constants/shadow_offset_x = -1
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 10
-text = "/"
-vertical_alignment = 1
-
 [node name="KeySpace" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=2129779331]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -172,7 +156,7 @@ texture = ExtResource("7_0gt6g")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Separator2" type="Label" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=1716049582]
+[node name="Separator" type="Label" parent="CenterContainer/VBoxContainer/Controls/JumpRow" unique_id=1716049582]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
 theme_override_constants/shadow_offset_x = -1
@@ -220,6 +204,57 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 10
 text = "(mantener pulsado)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ReelRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Controls" unique_id=1682941531]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Controls/ReelRow" unique_id=795020340]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "Cuerda"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KeyS" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/ReelRow" unique_id=1878407514]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("11_vdmp8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Separator" type="Label" parent="CenterContainer/VBoxContainer/Controls/ReelRow" unique_id=801659416]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "/"
+vertical_alignment = 1
+
+[node name="KeyW" type="TextureRect" parent="CenterContainer/VBoxContainer/Controls/ReelRow" unique_id=1215843337]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("6_65fpc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/Controls/ReelRow" unique_id=466538419]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "(extender / recoger)"
 horizontal_alignment = 2
 vertical_alignment = 1
 

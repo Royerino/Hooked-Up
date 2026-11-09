@@ -8,7 +8,9 @@ signal blocked(point: Vector2, normal: Vector2)
 enum State { IDLE, FLYING, RETRACTING, HOOKED }
 
 const ROPE_MAX_LENGTH: float = 180
+const ROPE_MIN_LENGTH: float = 50
 const ROPE_VELOCITY: float = 1500
+const ROPE_REEL_SPEED: float = 150
 
 var state: State = State.IDLE
 var direction: Vector2
@@ -123,7 +125,7 @@ func _process_retracting(delta: float) -> void:
 func _process_hooked(delta: float) -> void:
 	if not is_instance_valid(collision_node):
 		return _process_retracting(delta)
-		
+
 	collision_point = collision_node.to_global(collision_offset)
 	_set_hook_position(collision_point)
 	# TODO: Añadir partículas en el lugar de impacto del gancho.
