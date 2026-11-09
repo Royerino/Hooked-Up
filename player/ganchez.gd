@@ -10,6 +10,7 @@ const GRAVITY_SCALE = 1.5
 const JUMP_CUT_FACTOR = 0.5
 const ROPE_TOLERANCE = 1.0
 const COYOTE_TIME := 0.1
+const FEET_OFFSET := 16.0
 
 var is_hooked := false
 var controllable := true
@@ -94,7 +95,7 @@ func set_controllable(value: bool) -> void:
 
 
 func respawn_at(pos: Vector2) -> void:
-	global_position = pos
+	global_position = pos - Vector2(0, FEET_OFFSET)
 	velocity = Vector2.ZERO
 	grappling_hook.reset()
 	controllable = true

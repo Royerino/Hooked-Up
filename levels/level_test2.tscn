@@ -587,7 +587,7 @@ tile_map_data = PackedByteArray("AAAAABQAAQAEAAEAAAABABQAAQAFAAAAAAACABQAAQAFAAA
 tile_set = SubResource("TileSet_4qn3k")
 
 [node name="Respawn" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="2" unique_id=1697890633]
-position = Vector2(5664, 327)
+position = Vector2(13, 344)
 
 [node name="Background" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="4" unique_id=292193952]
 visible = false

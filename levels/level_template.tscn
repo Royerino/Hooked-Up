@@ -398,7 +398,7 @@ tile_map_data = PackedByteArray("AAAAABQAAAACAAEAAAABABQAAAACAAEAAAACABQAAAACAAE
 tile_set = SubResource("TileSet_yytfi")
 
 [node name="Respawn" type="Marker2D" parent="PlayZone" unique_id=1697890633]
-position = Vector2(13, 328)
+position = Vector2(13, 344)
 
 [node name="Ganchez" parent="PlayZone" unique_id=87218500 instance=ExtResource("2_skox6")]
 position = Vector2(13, 328)
