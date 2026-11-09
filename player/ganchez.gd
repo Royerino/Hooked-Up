@@ -9,12 +9,14 @@ const AIR_CONTROL = 700
 const GRAVITY_SCALE = 1.5
 const JUMP_CUT_FACTOR = 0.5
 const ROPE_TOLERANCE = 1.0
+const COYOTE_TIME := 0.1
 
 var is_hooked := false
 var controllable := true
 var hook_pos := Vector2.ZERO
 var rope_length := 0.0
 var anchor_velocity := Vector2.ZERO
+var coyote_timer := 0.0
 
 @onready var grappling_hook: GrapplingHook = $GrapplingHook
 @onready var body: AnimatedSprite2D = $Body
@@ -40,10 +42,16 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		var gravity_scale := GRAVITY_SCALE if not is_hooked else 1.0
 		velocity += get_gravity() * gravity_scale * delta
+		
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME
+	else:
+		coyote_timer -= delta
 
 	# Gestión de salto.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and coyote_timer > 0:
 		velocity.y = JUMP_VELOCITY
+		coyote_timer = 0
 	elif Input.is_action_just_released("jump") and velocity.y < 0 and not is_hooked:
 		velocity.y *= JUMP_CUT_FACTOR
 
