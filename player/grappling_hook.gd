@@ -48,6 +48,8 @@ func _physics_process(delta: float) -> void:
 
 
 func shoot() -> void:
+	if state == State.RETRACTING:
+		reset()
 	if state != State.IDLE:
 		return
 
