@@ -170,7 +170,8 @@ func _correct_rope_position(delta: float) -> void:
 	# Corrige donde estará el ancla.
 	var next_anchor: Vector2 = hook_pos + anchor_velocity * delta
 	if next_anchor.distance_to(global_position) > rope_length:
-		global_position = next_anchor + next_anchor.direction_to(global_position) * rope_length
+		var target := next_anchor + next_anchor.direction_to(global_position) * rope_length
+		move_and_collide(target - global_position)
 
 
 func _reel_rope(delta: float) -> void:
