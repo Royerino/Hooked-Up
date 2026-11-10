@@ -24,10 +24,6 @@ window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
-[global_group]
-
-hookable=""
-
 [gui]
 
 theme/custom_font="uid://lyobgd72spc8"
@@ -80,7 +76,7 @@ rope_extend={
 
 [layer_names]
 
-2d_physics/layer_2="hookable"
+2d_physics/layer_2="hook_points"
 
 [physics]
 

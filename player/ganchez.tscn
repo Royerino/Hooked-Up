@@ -171,6 +171,7 @@ gizmo_extents = 1.0
 
 [node name="RayCast2D" type="RayCast2D" parent="WeaponPivot/Muzzle" unique_id=210472564]
 target_position = Vector2(200, 0)
+collision_mask = 3
 
 [node name="GrapplingHook" type="Node2D" parent="." unique_id=765887971 node_paths=PackedStringArray("muzzle", "character")]
 top_level = true
@@ -190,6 +191,7 @@ texture = SubResource("AtlasTexture_vbjsr")
 [node name="RayCast2D" type="RayCast2D" parent="GrapplingHook" unique_id=190244419]
 enabled = false
 exclude_parent = false
+collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1889170744]
 

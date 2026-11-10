@@ -9,11 +9,12 @@ enum State { IDLE, FLYING, RETRACTING, HOOKED }
 
 const ROPE_MAX_LENGTH: float = 180
 const ROPE_MIN_LENGTH: float = 50
-const ROPE_VELOCITY: float = 1500
+const ROPE_VELOCITY: float = 3000
 const ROPE_REEL_SPEED: float = 150
 
 var state: State = State.IDLE
 var direction: Vector2
+var target: HookPoint = null
 var collision_point: Vector2
 var collision_node: Node2D
 var collision_offset: Vector2
@@ -62,6 +63,12 @@ func shoot() -> void:
 	hook.position = muzzle.global_position
 	hook.rotation = muzzle.global_rotation
 	direction = Vector2.from_angle(muzzle.global_rotation)
+	
+	raycast.global_position = muzzle.global_position
+	raycast.target_position = direction * ROPE_MAX_LENGTH
+	raycast.force_raycast_update()
+	if raycast.is_colliding() and is_hookable(raycast.get_collider()):
+		target = raycast.get_collider()
 
 	state = State.FLYING
 
@@ -76,17 +83,10 @@ func retrieve() -> void:
 	state = State.RETRACTING
 
 
-func is_hookable(collider: Object, point: Vector2, normal: Vector2) -> bool:
-	if collider is TileMapLayer:
-		# Un pequeño paso hacia dentro del tile, para no caer en el borde entre celdas.
-		var inside: Vector2 = point - normal
-		var cell: Vector2i = collider.local_to_map(collider.to_local(inside))
-		var data: TileData = collider.get_cell_tile_data(cell)
-		return data != null and bool(data.get_custom_data("hookable"))
-	# También se puede enganchar nodos en el grupo hookable. 
-	return collider is Node and collider.is_in_group("hookable")
-	
-	
+func is_hookable(collider: Object) -> bool:
+	return collider is HookPoint
+
+
 func get_anchor_position() -> Vector2:
 	if is_instance_valid(collision_node):
 		return collision_node.to_global(collision_offset)
@@ -94,7 +94,10 @@ func get_anchor_position() -> Vector2:
 
 
 func _process_flying(delta: float) -> void:
-	var current_pos = rope.get_point_position(1)
+	var current_pos := rope.get_point_position(1)
+	if is_instance_valid(target):
+		direction = current_pos.direction_to(target.global_position)
+		hook.rotation = direction.angle()
 	var new_pos: Vector2 = current_pos + direction * ROPE_VELOCITY * delta
 	
 	# El RayCast mira si en la siguiente posición hay colisión y la gestiona.
@@ -141,6 +144,7 @@ func _set_hook_position(pos: Vector2) -> void:
 func reset() -> void:
 	var was_hooked := state == State.HOOKED
 	state = State.IDLE
+	target = null
 	hook.visible = false
 	rope.visible = false
 	collision_point = Vector2.ZERO
@@ -157,7 +161,8 @@ func _manage_collision() -> void:
 	var normal: Vector2 = raycast.get_collision_normal()
 	var collider: Node2D = raycast.get_collider()
 
-	if is_hookable(collider, point, normal):
+	if is_hookable(collider):
+		point = collider.global_position
 		state = State.HOOKED
 		collision_point = point
 		collision_node = collider

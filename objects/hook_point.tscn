@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bsnjnkx5fg704"]
+
+[ext_resource type="Texture2D" uid="uid://dp7ma63exskon" path="res://assets/tilesets/Pixel platformer industrial/tilemap_packed.png" id="1_slkv1"]
+[ext_resource type="Script" uid="uid://didnartokjq3a" path="res://objects/hook_point.gd" id="1_ujc7u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yytfi"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hla8"]
+atlas = ExtResource("1_slkv1")
+region = Rect2(129, 72, 11, 18)
+
+[node name="HookPoint" type="AnimatableBody2D" unique_id=435721103]
+collision_layer = 2
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_ujc7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=33007361]
+shape = SubResource("CircleShape2D_yytfi")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=376092507]
+texture = SubResource("AtlasTexture_6hla8")

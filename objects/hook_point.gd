@@ -1,0 +1,1 @@
+class_name HookPoint extends AnimatableBody2D
