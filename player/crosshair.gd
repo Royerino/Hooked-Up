@@ -22,6 +22,9 @@ func _process(_delta: float) -> void:
 		if grappling_hook.is_hookable(gun_raycast.get_collider(), point, normal):
 			$Sprite2D.texture = texture_hookable
 			$Sprite2D.modulate.a = 1
+		else:
+			$Sprite2D.texture = texture_blocked
+			$Sprite2D.modulate.a = 0.5
 
 
 func _exit_tree() -> void:
