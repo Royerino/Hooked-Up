@@ -16,7 +16,7 @@ var state: State = State.IDLE
 var direction: Vector2
 var target: HookPoint = null
 var collision_point: Vector2
-var collision_node: Node2D
+var collision_node: HookPoint
 var collision_offset: Vector2
 
 @export var muzzle: Marker2D
@@ -78,7 +78,7 @@ func retrieve() -> void:
 		return
 
 	if state == State.HOOKED:
-		released.emit()
+		_emit_released(collision_node)
 
 	state = State.RETRACTING
 
@@ -143,6 +143,7 @@ func _set_hook_position(pos: Vector2) -> void:
 
 func reset() -> void:
 	var was_hooked := state == State.HOOKED
+	var released_node := collision_node
 	state = State.IDLE
 	target = null
 	hook.visible = false
@@ -152,7 +153,14 @@ func reset() -> void:
 	collision_offset = Vector2.ZERO
 	rope.clear_points()
 	if was_hooked:
-		released.emit()
+		_emit_released(released_node)
+
+
+func _emit_released(node: HookPoint) -> void:
+	released.emit()
+	if not is_instance_valid(node):
+		return
+	node.released.emit()
 
 
 # Si el gancho colisiona contra una superficie válida, se fija en esa posición. Si no, rebota.
@@ -169,6 +177,7 @@ func _manage_collision() -> void:
 		collision_offset = collision_node.to_local(point)
 		_set_hook_position(point)
 		hooked.emit(point)
+		collision_node.hooked.emit(character)
 	else:
 		blocked.emit(point, normal)
 		retrieve()

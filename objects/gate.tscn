@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://fr5ut0m5k157"]
+
+[ext_resource type="Script" uid="uid://bmm5wg0p40s14" path="res://objects/gate.gd" id="1_6x781"]
+[ext_resource type="Texture2D" uid="uid://dp7ma63exskon" path="res://assets/tilesets/Pixel platformer industrial/tilemap_packed.png" id="2_srs85"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yytfi"]
+atlas = ExtResource("2_srs85")
+region = Rect2(128, 92, 44, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
+size = Vector2(14, 44)
+
+[node name="Gate" type="Node2D" unique_id=1089960180]
+script = ExtResource("1_6x781")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1705150075]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1460219439]
+rotation = 1.5707964
+texture = SubResource("AtlasTexture_yytfi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=2014980218]
+shape = SubResource("RectangleShape2D_yytfi")

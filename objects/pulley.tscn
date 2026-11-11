@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bf4fp6ejgu0g4"]
+
+[ext_resource type="Script" uid="uid://by7n32tqorukw" path="res://objects/pulley.gd" id="1_xougj"]
+[ext_resource type="Texture2D" uid="uid://l6mvmrosidhv" path="res://assets/tilesets/Pixel platformer industrial/chain.png" id="2_cse2e"]
+[ext_resource type="PackedScene" uid="uid://bsnjnkx5fg704" path="res://objects/hook_point.tscn" id="2_q6dps"]
+
+[node name="Pulley" type="Node2D" unique_id=1647530750]
+script = ExtResource("1_xougj")
+
+[node name="Chain" type="Sprite2D" parent="." unique_id=1858422129]
+texture_repeat = 2
+position = Vector2(0, -27)
+texture = ExtResource("2_cse2e")
+centered = false
+offset = Vector2(-9, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 18, 18)
+
+[node name="HookPoint" parent="." unique_id=435721103 instance=ExtResource("2_q6dps")]

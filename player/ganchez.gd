@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	if velocity.x != 0 and is_on_floor():
 		body.play("walk")
-	elif !is_on_floor():
+	elif not is_on_floor():
 		body.play("jump")
 	else:
 		body.play("idle")
