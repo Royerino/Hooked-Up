@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bt6we6b6f3bpe" path="res://objects/moving_platform.gd" id="1_6vpaq"]
 [ext_resource type="Texture2D" uid="uid://dp7ma63exskon" path="res://assets/tilesets/Pixel platformer industrial/tilemap_packed.png" id="1_uu147"]
+[ext_resource type="Texture2D" uid="uid://cqyugliqa7m65" path="res://assets/objects/rail.png" id="2_0rtgj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yytfi"]
 atlas = ExtResource("1_uu147")
@@ -9,6 +10,12 @@ region = Rect2(128, 92, 44, 14)
 
 [node name="MovingPlatform" type="Node2D" unique_id=1469679414]
 script = ExtResource("1_6vpaq")
+
+[node name="Rail" type="Line2D" parent="." unique_id=1279456630]
+texture_repeat = 2
+width = 4.0
+texture = ExtResource("2_0rtgj")
+texture_mode = 1
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=2108252994]
 

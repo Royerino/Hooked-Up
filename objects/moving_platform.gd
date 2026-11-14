@@ -6,6 +6,7 @@ extends Node2D
 @export var move_vertical := false
 
 @onready var animation_player: AnimationPlayer = $AnimatableBody2D/AnimationPlayer
+@onready var rail: Line2D = $Rail
 
 
 func _ready() -> void:
@@ -21,6 +22,9 @@ func _ready() -> void:
 	else:
 		destination.x = travel_distance
 	var second_key := animation.track_insert_key(track_index, duration, destination)
+	
+	rail.add_point(Vector2.ZERO)
+	rail.add_point(destination)
 	
 	animation.track_set_key_transition(track_index, first_key, -2)
 	animation.track_set_key_transition(track_index, second_key, -2)
