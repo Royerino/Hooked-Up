@@ -19,12 +19,19 @@ var rope_length := 0.0
 var anchor_velocity := Vector2.ZERO
 var coyote_timer := 0.0
 
+@export var has_gun: bool = true
+
 @onready var grappling_hook: GrapplingHook = $GrapplingHook
 @onready var body: AnimatedSprite2D = $Body
 @onready var weapon_pivot: Node2D = $WeaponPivot
 @onready var arm: Sprite2D = $WeaponPivot/Arm
 @onready var gun: Sprite2D = $WeaponPivot/Gun
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var crosshair: CanvasLayer = $Crosshair
+
+
+func _ready() -> void:
+	set_has_gun(has_gun)
 
 
 func _physics_process(delta: float) -> void:
@@ -74,13 +81,16 @@ func _process(_delta: float) -> void:
 	else:
 		body.play("idle")
 
-	var mouse_pos = get_global_mouse_position()
-	_flip_char_on_mouse_pos(mouse_pos)
+	if has_gun:
+		var mouse_pos = get_global_mouse_position()
+		_flip_char_on_mouse_pos(mouse_pos)
+		
+		var angle = weapon_pivot.global_position.angle_to_point(mouse_pos)
+		_rotate_weapon_pivot(angle)
+	elif velocity.x != 0:
+		body.flip_h = true if velocity.x < 0 else false
 	
-	var angle = weapon_pivot.global_position.angle_to_point(mouse_pos)
-	_rotate_weapon_pivot(angle)
-	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and has_gun:
 		grappling_hook.shoot()
 	
 	elif Input.is_action_just_released("shoot"):
@@ -106,6 +116,12 @@ func set_camera_limits(rect: Rect2) -> void:
 	camera_2d.set_limit(SIDE_TOP, int(rect.position.y))
 	camera_2d.set_limit(SIDE_RIGHT, int(rect.end.x))
 	camera_2d.set_limit(SIDE_BOTTOM, int(rect.end.y))
+
+
+func set_has_gun(value: bool) -> void:
+	has_gun = value
+	weapon_pivot.visible = value
+	crosshair.visible = value
 
 
 # Gira el personaje a izquierda o derecha en base a la posición del ratón.

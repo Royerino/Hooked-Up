@@ -1,10 +1,10 @@
 class_name Gate extends Node2D
 
 
-@onready var animatable_body: AnimatableBody2D = $AnimatableBody2D
-
 @export var pulley: Pulley
 @export var open_height := 44.0
+
+@onready var animatable_body: AnimatableBody2D = $AnimatableBody2D
 
 
 func _ready() -> void:

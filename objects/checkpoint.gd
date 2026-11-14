@@ -5,10 +5,10 @@ signal activated(checkpoint: Checkpoint)
 
 var is_activated := false
 
-@onready var respawn_point: Marker2D = $RespawnPoint
-
 @export var texture_activated: Texture2D
 @export var texture_not_activated: Texture2D
+
+@onready var respawn_point: Marker2D = $RespawnPoint
 
 
 func _ready() -> void:
