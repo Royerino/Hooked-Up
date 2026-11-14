@@ -17,11 +17,6 @@ var jammed := false
 @onready var chain: Sprite2D = $Chain
 
 
-func _ready() -> void:
-	hook_point.hooked.connect(_on_hook_point_hooked)
-	hook_point.released.connect(_on_hook_point_released)
-
-
 func _physics_process(delta: float) -> void:
 	var is_body_hanging := hanging_body != null
 	

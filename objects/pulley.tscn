@@ -17,3 +17,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 18, 18)
 
 [node name="HookPoint" parent="." unique_id=435721103 instance=ExtResource("2_q6dps")]
+
+[connection signal="hooked" from="HookPoint" to="." method="_on_hook_point_hooked"]
+[connection signal="released" from="HookPoint" to="." method="_on_hook_point_released"]
