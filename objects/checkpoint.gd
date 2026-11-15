@@ -5,15 +5,9 @@ signal activated(checkpoint: Checkpoint)
 
 var is_activated := false
 
-@export var texture_activated: Texture2D
-@export var texture_not_activated: Texture2D
-
 @onready var respawn_point: Marker2D = $RespawnPoint
-
-
-func _ready() -> void:
-	$Sprite2D.texture = texture_not_activated
-	$Sprite2D.global_position = $RespawnPoint.global_position
+@onready var flag: Node2D = $Flag
+@onready var fabric: AnimatedSprite2D = $Flag/Fabric
 
 
 func get_respawn_position() -> Vector2:
@@ -28,5 +22,8 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 		
 	is_activated = true
-	$Sprite2D.texture = texture_activated
+	flag.modulate.a = 255
+	var tween := create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(fabric, "position:y", -19, 0.5)
+	fabric.play("wave")
 	activated.emit(self)
