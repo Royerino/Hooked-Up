@@ -13,9 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bei50cn37ecaq" path="res://assets/ui/crosshair/crosshair-121.svg" id="10_56q7g"]
 [ext_resource type="Texture2D" uid="uid://mi3vcj2c5ile" path="res://assets/ui/crosshair/crosshair-120.svg" id="11_mfogd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvnar"]
-size = Vector2(12, 29)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfogd"]
 atlas = ExtResource("2_mfogd")
 region = Rect2(0, 0, 32, 32)
@@ -140,9 +137,9 @@ region = Rect2(9, 73, 13, 13)
 platform_on_leave = 2
 script = ExtResource("1_cluk8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2054187335]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=265288408]
 position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_jvnar")
+polygon = PackedVector2Array(-3, -14.5, 3, -14.5, 6, -11.5, 6, 11.5, 3, 14.5, -3, 14.5, -6, 11.5, -6, -11.5)
 
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=2027633116]
 z_index = 2
@@ -194,7 +191,7 @@ exclude_parent = false
 collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1889170744]
-offset = Vector2(80, -40)
+offset = Vector2(80, -60)
 
 [node name="Crosshair" parent="." unique_id=1416019658 node_paths=PackedStringArray("gun_raycast", "grappling_hook") instance=ExtResource("9_ti8mf")]
 gun_raycast = NodePath("../WeaponPivot/Muzzle/RayCast2D")
