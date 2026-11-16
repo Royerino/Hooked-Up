@@ -194,6 +194,7 @@ exclude_parent = false
 collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1889170744]
+offset = Vector2(80, -40)
 
 [node name="Crosshair" parent="." unique_id=1416019658 node_paths=PackedStringArray("gun_raycast", "grappling_hook") instance=ExtResource("9_ti8mf")]
 gun_raycast = NodePath("../WeaponPivot/Muzzle/RayCast2D")
