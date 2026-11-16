@@ -40,6 +40,7 @@ position = Vector2(0, 8)
 
 [node name="Flag" type="Node2D" parent="." unique_id=1616398951]
 modulate = Color(1, 1, 1, 0.60784316)
+position = Vector2(0, 1)
 
 [node name="Pole" type="Sprite2D" parent="Flag" unique_id=1924276400]
 position = Vector2(0, -10)
