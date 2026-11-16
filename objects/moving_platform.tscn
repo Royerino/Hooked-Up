@@ -13,6 +13,7 @@ script = ExtResource("1_6vpaq")
 
 [node name="Rail" type="Line2D" parent="." unique_id=1279456630]
 texture_repeat = 2
+points = PackedVector2Array(0, 0, 200, 0)
 width = 4.0
 texture = ExtResource("2_0rtgj")
 texture_mode = 1
