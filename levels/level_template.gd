@@ -2,6 +2,7 @@ extends Node2D
 
 
 signal finished
+signal main_menu_requested
 
 const RESPAWN_TIME := 0.3
 
@@ -71,3 +72,7 @@ func _on_goal_reached() -> void:
 
 func _on_pause_menu_restart_requested() -> void:
 	_restart_level()
+
+
+func _on_pause_menu_main_menu_requested() -> void:
+	main_menu_requested.emit()

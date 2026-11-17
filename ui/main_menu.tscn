@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bd51aolm6x2bw"]
+
+[ext_resource type="Script" uid="uid://ceo2pqc00648y" path="res://ui/main_menu.gd" id="1_rmr83"]
+[ext_resource type="Texture2D" uid="uid://d18pdyhjv2rp7" path="res://assets/textures/Metal038_1K-PNG_Color.png" id="2_kaxbk"]
+[ext_resource type="Texture2D" uid="uid://daibsp4vk6iiq" path="res://assets/ui/logo/logo.png" id="3_0nobx"]
+[ext_resource type="PackedScene" uid="uid://5xfx3wb2xcw4" path="res://ui/menu_button.tscn" id="3_wk0pr"]
+
+[sub_resource type="Gradient" id="Gradient_jvnar"]
+interpolation_mode = 2
+colors = PackedColorArray(0.18431373, 0.43529412, 0.81960785, 1, 0.078431375, 0.1882353, 0.37254903, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yytfi"]
+gradient = SubResource("Gradient_jvnar")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1.1, 0.5)
+
+[node name="MainMenu" type="Control" unique_id=653104570]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rmr83")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2011108865]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yytfi")
+expand_mode = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1915215555]
+repeat_size = Vector2(1024, 1024)
+autoscroll = Vector2(25, 25)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1173214645]
+modulate = Color(1, 1, 1, 0.19607843)
+texture_filter = 2
+position = Vector2(-176, -280)
+texture = ExtResource("2_kaxbk")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1764365097]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=835081094]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=821325232]
+custom_minimum_size = Vector2(270, 180)
+layout_mode = 2
+texture = ExtResource("3_0nobx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1216514430]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=127638786]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="NewGameButton" parent="CenterContainer/VBoxContainer/Buttons" unique_id=1580650568 instance=ExtResource("3_wk0pr")]
+layout_mode = 2
+text = "Nueva partida"
+
+[node name="QuitButton" parent="CenterContainer/VBoxContainer/Buttons" unique_id=2017144961 instance=ExtResource("3_wk0pr")]
+layout_mode = 2
+text = "Salir al escritorio"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

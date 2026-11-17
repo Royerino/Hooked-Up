@@ -348,4 +348,5 @@ scale = Vector2(2.4506524, 12.9750595)
 
 [connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]
 [connection signal="reached" from="PlayZone/Goal" to="." method="_on_goal_reached"]
+[connection signal="main_menu_requested" from="PauseMenu" to="." method="_on_pause_menu_main_menu_requested"]
 [connection signal="restart_requested" from="PauseMenu" to="." method="_on_pause_menu_restart_requested"]

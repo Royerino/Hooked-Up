@@ -3,21 +3,25 @@ extends Node
 
 var current_level_index := 0
 var current_level: Node
-var start_screen: Control
+var main_menu: Control
 
 @export var scenes: Array[PackedScene]
-@export var start_screen_scene: PackedScene
+@export var main_menu_scene: PackedScene
 @export var end_screen_scene: PackedScene
 
 
 func _ready() -> void:
-	start_screen = start_screen_scene.instantiate()
-	add_child(start_screen)
-	start_screen.started.connect(_on_start_screen_started)
+	_show_main_menu()
 	
+
+func _show_main_menu() -> void:
+	main_menu = main_menu_scene.instantiate()
+	add_child(main_menu)
+	main_menu.new_game_requested.connect(_on_main_menu_new_game_requested)
+
 	
-func _on_start_screen_started() -> void:
-	start_screen.queue_free()
+func _on_main_menu_new_game_requested() -> void:
+	main_menu.queue_free()
 	_load_level()
 
 
@@ -29,6 +33,7 @@ func _load_level() -> void:
 	current_level = scenes[current_level_index].instantiate()
 	add_child(current_level)
 	current_level.finished.connect(_on_level_finished)
+	current_level.main_menu_requested.connect(_on_level_main_menu_requested)
 
 
 func _on_level_finished() -> void:
@@ -40,3 +45,15 @@ func _change_level() -> void:
 	remove_child(current_level)
 	current_level.queue_free()
 	_load_level()
+
+
+func _on_level_main_menu_requested() -> void:
+	_return_to_main_menu.call_deferred()
+
+
+func _return_to_main_menu() -> void:
+	get_tree().paused = false
+	remove_child(current_level)
+	current_level.queue_free()
+	current_level_index = 0
+	_show_main_menu()

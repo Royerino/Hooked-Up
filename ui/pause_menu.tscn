@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://065ewjgnrn4e"]
 
-[ext_resource type="Texture2D" uid="uid://cbhpn0doaxs7b" path="res://assets/ui/sign_plate.png" id="1_50142"]
 [ext_resource type="Texture2D" uid="uid://donl5plk8de71" path="res://assets/ui/sign_plate_2x.png" id="1_avurv"]
 [ext_resource type="Script" uid="uid://bgy6pptkdlw74" path="res://ui/pause_menu.gd" id="1_npydk"]
-[ext_resource type="Texture2D" uid="uid://bin0mk507ejro" path="res://assets/ui/sign_plate_hover.png" id="2_fob5h"]
+[ext_resource type="PackedScene" uid="uid://5xfx3wb2xcw4" path="res://ui/menu_button.tscn" id="3_avurv"]
 [ext_resource type="Texture2D" uid="uid://bq8et3mamc3qa" path="res://assets/ui/inputs/keyboard_escape.png" id="12_b1mq0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vbjsr"]
@@ -34,39 +33,6 @@ content_margin_top = 12.0
 content_margin_right = 12.0
 content_margin_bottom = 12.0
 texture = SubResource("GradientTexture2D_lpidc")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejwgg"]
-content_margin_left = 6.0
-content_margin_top = 6.0
-content_margin_right = 6.0
-content_margin_bottom = 6.0
-texture = ExtResource("1_50142")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_avurv"]
-content_margin_left = 6.0
-content_margin_top = 7.0
-content_margin_right = 6.0
-content_margin_bottom = 5.0
-texture = ExtResource("2_fob5h")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fob5h"]
-content_margin_left = 6.0
-content_margin_top = 6.0
-content_margin_right = 6.0
-content_margin_bottom = 6.0
-texture = ExtResource("2_fob5h")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=709762003]
 process_mode = 3
@@ -117,35 +83,17 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=2118658693]
+[node name="ContinueButton" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=1580650568 instance=ExtResource("3_avurv")]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0.14901961, 0.4862745, 1)
-theme_override_constants/outline_size = 4
-theme_override_styles/normal = SubResource("StyleBoxTexture_ejwgg")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_avurv")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fob5h")
-theme_override_styles/focus = SubResource("StyleBoxTexture_fob5h")
 text = "Continuar"
 
-[node name="ResetButton" type="Button" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=609844351]
+[node name="ResetButton" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=256344368 instance=ExtResource("3_avurv")]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0.14901961, 0.4862745, 1)
-theme_override_constants/outline_size = 4
-theme_override_styles/normal = SubResource("StyleBoxTexture_ejwgg")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_avurv")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fob5h")
-theme_override_styles/focus = SubResource("StyleBoxTexture_fob5h")
 text = "Volver a la bandera"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=2046609017]
+[node name="MainMenuButton" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=393715358 instance=ExtResource("3_avurv")]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0.14901961, 0.4862745, 1)
-theme_override_constants/outline_size = 4
-theme_override_styles/normal = SubResource("StyleBoxTexture_ejwgg")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_avurv")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fob5h")
-theme_override_styles/focus = SubResource("StyleBoxTexture_fob5h")
-text = "Salir del juego"
+text = "Menú principal"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=1478204908]
 custom_minimum_size = Vector2(0, 16)
@@ -158,11 +106,10 @@ size_flags_vertical = 8
 
 [node name="Label" type="Label" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1661288430]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 text = "Pulsa"
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1275256168]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("12_b1mq0")
 expand_mode = 1
@@ -170,9 +117,8 @@ stretch_mode = 5
 
 [node name="Label2" type="Label" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer" unique_id=89634779]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 text = "para continuar"
 
 [connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
