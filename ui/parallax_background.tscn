@@ -7,63 +7,59 @@
 [ext_resource type="Texture2D" uid="uid://cav25srr74myb" path="res://assets/backgrounds/Free industrial zone tileset pixel art/5.png" id="5_t525n"]
 
 [node name="ParallaxBackground" type="Node2D" unique_id=2135045938]
+modulate = Color(0.5411765, 0.5764706, 0.65882355, 1)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=670516833]
-scale = Vector2(1.2, 1.2)
 scroll_scale = Vector2(0.01, 0)
 repeat_size = Vector2(864, 0)
-repeat_times = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=10750844]
 texture_filter = 1
 position = Vector2(0, 39.999996)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_266gm")
+centered = false
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1240373535]
-scale = Vector2(1.2, 1.2)
 scroll_scale = Vector2(0.04, 0)
 repeat_size = Vector2(864, 0)
-repeat_times = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=425831728]
 texture_filter = 1
 position = Vector2(0, 39.999996)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_tjtqc")
+centered = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1586131524]
-scale = Vector2(1.2, 1.2)
 scroll_scale = Vector2(0.08, 0)
 repeat_size = Vector2(864, 0)
-repeat_times = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" unique_id=1030435095]
 texture_filter = 1
 position = Vector2(0, 39.999996)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_uh7gg")
+centered = false
 
 [node name="Parallax2D4" type="Parallax2D" parent="." unique_id=1336366326]
-scale = Vector2(1.2, 1.2)
 scroll_scale = Vector2(0.15, 0)
 repeat_size = Vector2(864, 0)
-repeat_times = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D4" unique_id=19105548]
 texture_filter = 1
 position = Vector2(0, 39.999996)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_3erm3")
+centered = false
 
 [node name="Parallax2D5" type="Parallax2D" parent="." unique_id=1286889376]
-scale = Vector2(1.2, 1.2)
 scroll_scale = Vector2(0.3, 0)
 repeat_size = Vector2(864, 0)
-repeat_times = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D5" unique_id=803232180]
 texture_filter = 1
 position = Vector2(0, 39.999996)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_t525n")
+centered = false
