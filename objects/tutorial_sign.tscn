@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c6qbpd1c8vsdh"]
+
+[ext_resource type="Script" uid="uid://b18rq6k30dwf5" path="res://objects/tutorial_sign.gd" id="1_eii74"]
+[ext_resource type="Texture2D" uid="uid://cbhpn0doaxs7b" path="res://assets/ui/sign_plate.png" id="1_tsbph"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xcbbh"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_tsbph")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[node name="TutorialSign" type="Node2D" unique_id=791656867]
+script = ExtResource("1_eii74")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=958751584]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_xcbbh")
+
+[node name="Content" type="HBoxContainer" parent="Panel" unique_id=2104982769]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Content" unique_id=1933391957]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 10
+vertical_alignment = 1
