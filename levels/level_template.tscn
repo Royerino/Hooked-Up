@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://44150g0cm5bc" path="res://assets/tilesets/Pixel platformer/tilemap-backgrounds_packed.png" id="4_13k7l"]
 [ext_resource type="PackedScene" uid="uid://dh210asxriydr" path="res://objects/checkpoint.tscn" id="5_8xmsw"]
 [ext_resource type="PackedScene" uid="uid://dhp4ktnjmb7nm" path="res://objects/goal.tscn" id="6_yglgk"]
+[ext_resource type="PackedScene" uid="uid://065ewjgnrn4e" path="res://ui/pause_menu.tscn" id="7_glpk1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(1616, 362)
@@ -308,14 +309,6 @@ texture_region_size = Vector2i(24, 24)
 tile_size = Vector2i(24, 24)
 sources/1 = SubResource("TileSetAtlasSource_13k7l")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r6hke"]
-atlas = ExtResource("2_13k7l")
-region = Rect2(163, 136, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnhlw"]
-atlas = ExtResource("2_13k7l")
-region = Rect2(145, 136, 16, 8)
-
 [node name="Level" type="Node2D" unique_id=1165794422]
 script = ExtResource("1_vgt4e")
 
@@ -346,12 +339,13 @@ tile_set = SubResource("TileSet_jvnar")
 [node name="Checkpoints" type="Node2D" parent="PlayZone" unique_id=2001044487]
 
 [node name="Checkpoint" parent="PlayZone/Checkpoints" unique_id=1358784807 instance=ExtResource("5_8xmsw")]
-texture_activated = SubResource("AtlasTexture_r6hke")
-texture_not_activated = SubResource("AtlasTexture_tnhlw")
 
 [node name="Goal" parent="PlayZone" unique_id=1815908131 instance=ExtResource("6_yglgk")]
 position = Vector2(1591.9999, 216)
 scale = Vector2(2.4506524, 12.9750595)
 
+[node name="PauseMenu" parent="." unique_id=709762003 instance=ExtResource("7_glpk1")]
+
 [connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]
 [connection signal="reached" from="PlayZone/Goal" to="." method="_on_goal_reached"]
+[connection signal="restart_requested" from="PauseMenu" to="." method="_on_pause_menu_restart_requested"]

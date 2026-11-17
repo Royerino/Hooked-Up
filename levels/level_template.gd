@@ -67,3 +67,7 @@ func _on_goal_reached() -> void:
 		return
 	is_finished = true
 	finished.emit()
+
+
+func _on_pause_menu_restart_requested() -> void:
+	_restart_level()

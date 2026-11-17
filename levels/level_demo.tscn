@@ -579,7 +579,7 @@ tile_map_data = PackedByteArray("AAAAABQAAgAEAAEAAAABABQAAgAEAAEAAAACABQAAgAEAAE
 tile_set = SubResource("TileSet_lah05")
 
 [node name="Respawn" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="2" unique_id=1697890633]
-position = Vector2(14141, 244)
+position = Vector2(64, 326)
 
 [node name="Ganchez" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="3" unique_id=87218500]
 position = Vector2(64, 310)
