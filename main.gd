@@ -4,6 +4,7 @@ extends Node
 var current_level_index := 0
 var current_level: Node
 var main_menu: Control
+var end_menu: Control
 
 @export var scenes: Array[PackedScene]
 @export var main_menu_scene: PackedScene
@@ -27,7 +28,9 @@ func _on_main_menu_new_game_requested() -> void:
 
 func _load_level() -> void:
 	if current_level_index >= scenes.size():
-		add_child(end_screen_scene.instantiate())
+		end_menu = end_screen_scene.instantiate()
+		add_child(end_menu)
+		end_menu.main_menu_requested.connect(_on_end_screen_main_menu_requested)
 		return
 		
 	current_level = scenes[current_level_index].instantiate()
@@ -55,5 +58,11 @@ func _return_to_main_menu() -> void:
 	get_tree().paused = false
 	remove_child(current_level)
 	current_level.queue_free()
+	current_level_index = 0
+	_show_main_menu()
+
+
+func _on_end_screen_main_menu_requested() -> void:
+	end_menu.queue_free()
 	current_level_index = 0
 	_show_main_menu()
