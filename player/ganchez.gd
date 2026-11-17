@@ -11,6 +11,12 @@ const JUMP_CUT_FACTOR = 0.5
 const ROPE_TOLERANCE = 1.0
 const COYOTE_TIME := 0.1
 const FEET_OFFSET := 16.0
+const GROUND_ACCELERATION := 1800
+const GROUND_DECELERATION := 4000
+const CAMERA_BASE_OFFSET := Vector2(80, -60)
+const CAMERA_LOOK_FACTOR := 0.1
+const CAMERA_LOOK_MAX := 40.0
+const CAMERA_LOOK_SPEED := 120.0
 
 var is_hooked := false
 var controllable := true
@@ -73,7 +79,7 @@ func _physics_process(delta: float) -> void:
 		_correct_rope_position(delta)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if velocity.x != 0 and is_on_floor():
 		body.play("walk")
 	elif not is_on_floor():
@@ -87,6 +93,8 @@ func _process(_delta: float) -> void:
 		
 		var angle = weapon_pivot.global_position.angle_to_point(mouse_pos)
 		_rotate_weapon_pivot(angle)
+		
+		_update_camera_offset(delta)
 	elif velocity.x != 0:
 		body.flip_h = true if velocity.x < 0 else false
 	
@@ -160,11 +168,11 @@ func _handle_horizontal_movement(direction: float, delta: float) -> void:
 	
 	# En el suelo con movimiento.
 	elif direction:
-		velocity.x = direction * SPEED
+		velocity.x = move_toward(velocity.x, direction * SPEED, GROUND_ACCELERATION * delta)
 	
 	# En el suelo sin movimiento.
 	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, GROUND_DECELERATION * delta)
 
 
 func _apply_rope_constraint() -> void:
@@ -208,3 +216,11 @@ func _on_grappling_hook_hooked(collision_point: Vector2) -> void:
 func _on_grappling_hook_released() -> void:
 	is_hooked = false
 	anchor_velocity = Vector2.ZERO
+
+
+func _update_camera_offset(delta: float) -> void:
+	var target_offset := CAMERA_BASE_OFFSET
+	var screen_center := get_viewport().get_visible_rect().size / 2.0
+	var mouse_from_center := get_viewport().get_mouse_position() - screen_center
+	target_offset += (mouse_from_center * CAMERA_LOOK_FACTOR).limit_length(CAMERA_LOOK_MAX)
+	camera_2d.offset = camera_2d.offset.move_toward(target_offset, CAMERA_LOOK_SPEED * delta)
