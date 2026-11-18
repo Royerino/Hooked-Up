@@ -17,7 +17,7 @@ const CAMERA_BASE_OFFSET := Vector2(80, -60)
 const CAMERA_LOOK_FACTOR := 0.1
 const CAMERA_LOOK_MAX := 40.0
 const CAMERA_LOOK_SPEED := 120.0
-const LAND_SOUND_MIN_SPEED := 650.0
+const LAND_SOUND_MIN_SPEED := 500.0
 
 var is_hooked := false
 var controllable := true
