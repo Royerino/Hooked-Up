@@ -139,6 +139,12 @@ animations = [{
 atlas = ExtResource("3_tyywi")
 region = Rect2(9, 73, 13, 13)
 
+[sub_resource type="Gradient" id="Gradient_jvnar"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_yytfi"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Ganchez" type="CharacterBody2D" unique_id=87218500]
 collision_layer = 5
 platform_on_leave = 2
@@ -211,6 +217,21 @@ bus = &"SFX"
 stream = ExtResource("12_ekty2")
 bus = &"SFX"
 
+[node name="HookSparks" type="CPUParticles2D" parent="GrapplingHook" unique_id=1888726940]
+z_index = 1
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 100.0
+initial_velocity_max = 180.0
+scale_amount_max = 2.0
+color = Color(1, 0.84313726, 0.36862746, 1)
+color_ramp = SubResource("Gradient_jvnar")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1889170744]
 offset = Vector2(80, -60)
 
@@ -222,7 +243,7 @@ texture_blocked = ExtResource("11_mfogd")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=26889158]
 stream = ExtResource("16_dxaja")
-volume_db = -6.0
+volume_db = -3.0
 pitch_scale = 0.8
 bus = &"SFX"
 
@@ -237,6 +258,21 @@ stream = ExtResource("18_mg0pw")
 volume_db = -8.0
 pitch_scale = 1.25
 bus = &"SFX"
+
+[node name="DustParticles" type="CPUParticles2D" parent="." unique_id=1321273960]
+position = Vector2(0, 16)
+emitting = false
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 80.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_max = 2.0
+color = Color(0.62967473, 0.62967473, 0.6296747, 1)
+color_ramp = SubResource("Gradient_yytfi")
 
 [connection signal="hooked" from="GrapplingHook" to="." method="_on_grappling_hook_hooked"]
 [connection signal="released" from="GrapplingHook" to="." method="_on_grappling_hook_released"]

@@ -8,6 +8,7 @@ var target_y := 0.0
 
 @onready var animatable_body: AnimatableBody2D = $AnimatableBody2D
 @onready var close_sound: AudioStreamPlayer2D = $CloseSound
+@onready var close_dust: CPUParticles2D = $CloseDust
 
 
 func _ready() -> void:
@@ -29,3 +30,4 @@ func _on_progress_changed(progress: float) -> void:
 	target_y = -open_height * progress
 	if progress == 0.0:
 		close_sound.play()
+		close_dust.restart()

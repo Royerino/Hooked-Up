@@ -28,6 +28,7 @@ var collision_offset: Vector2
 @onready var attach_sound: AudioStreamPlayer = $AttachSound
 @onready var block_sound: AudioStreamPlayer = $BlockSound
 @onready var shoot_sound: AudioStreamPlayer = $ShootSound
+@onready var hook_sparks: CPUParticles2D = $HookSparks
 
 
 func _ready() -> void:
@@ -137,7 +138,6 @@ func _process_hooked(delta: float) -> void:
 
 	collision_point = collision_node.to_global(collision_offset)
 	_set_hook_position(collision_point)
-	# TODO: Añadir partículas en el lugar de impacto del gancho.
 
 
 func _set_hook_position(pos: Vector2) -> void:
@@ -175,6 +175,8 @@ func _manage_collision() -> void:
 
 	if is_hookable(collider):
 		point = collider.global_position
+		hook_sparks.global_position = point
+		hook_sparks.restart()
 		state = State.HOOKED
 		collision_point = point
 		collision_node = collider

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dh210asxriydr" path="res://objects/checkpoint.tscn" id="5_8xmsw"]
 [ext_resource type="PackedScene" uid="uid://dhp4ktnjmb7nm" path="res://objects/goal.tscn" id="6_yglgk"]
 [ext_resource type="PackedScene" uid="uid://065ewjgnrn4e" path="res://ui/pause_menu.tscn" id="7_glpk1"]
-[ext_resource type="AudioStream" uid="uid://vh1m5qfoyytc" path="res://assets/audio/sfx/death.wav" id="8_22dcj"]
+[ext_resource type="AudioStream" uid="uid://cw14tl5h8doe8" path="res://assets/audio/sfx/death.wav" id="8_22dcj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(1616, 362)
@@ -310,6 +310,10 @@ texture_region_size = Vector2i(24, 24)
 tile_size = Vector2i(24, 24)
 sources/1 = SubResource("TileSetAtlasSource_13k7l")
 
+[sub_resource type="Gradient" id="Gradient_yytfi"]
+offsets = PackedFloat32Array(0, 0.68221575, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Level" type="Node2D" unique_id=1165794422]
 script = ExtResource("1_vgt4e")
 
@@ -349,6 +353,7 @@ scale = Vector2(2.4506524, 12.9750595)
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=955068027]
 stream = ExtResource("8_22dcj")
+pitch_scale = 1.5
 bus = &"SFX"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1186976438]
@@ -356,6 +361,22 @@ process_mode = 3
 volume_db = -8.0
 autoplay = true
 bus = &"Music"
+
+[node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=1724109916]
+z_index = 1
+emitting = false
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 600)
+initial_velocity_min = 350.0
+initial_velocity_max = 450.0
+scale_amount_max = 2.0
+color = Color(1, 0.23137255, 0.23137255, 1)
+color_ramp = SubResource("Gradient_yytfi")
 
 [connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]
 [connection signal="reached" from="PlayZone/Goal" to="." method="_on_goal_reached"]

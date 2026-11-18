@@ -440,7 +440,7 @@ sources/1 = SubResource("TileSetAtlasSource_di4gh")
 [node name="ParallaxBackground" parent="." index="0" unique_id=2135045938 instance=ExtResource("2_kiggy")]
 
 [node name="CollisionShape2D" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="0" unique_id=1778947435]
-position = Vector2(3640, 20)
+position = Vector2(3643, 181)
 shape = SubResource("RectangleShape2D_n0wgr")
 
 [node name="Terrain" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="1" unique_id=2091008048]
@@ -484,13 +484,13 @@ travel_distance = -200.0
 [node name="MovingPlatform4" parent="PlayZone/MovingPlataforms" index="3" unique_id=1263695749 instance=ExtResource("4_c4oi5")]
 position = Vector2(2136, 327)
 travel_distance = -200.0
-duration = 1.0
 move_vertical = true
+duration = 1.0
 
 [node name="MovingPlatform5" parent="PlayZone/MovingPlataforms" index="4" unique_id=561393043 instance=ExtResource("4_c4oi5")]
 position = Vector2(2272, 120)
-duration = 1.0
 move_vertical = true
+duration = 1.0
 
 [node name="MovingPlatform6" parent="PlayZone/MovingPlataforms" index="5" unique_id=1238945397 instance=ExtResource("4_c4oi5")]
 position = Vector2(3160, 320)

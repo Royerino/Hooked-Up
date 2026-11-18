@@ -773,7 +773,6 @@ position = Vector2(6003, 208)
 position = Vector2(6661, 261)
 travel_distance = 40.0
 down_time = 0.5
-up_time = 1.5
 
 [node name="Pulley3" parent="PlayZone/Pulleys" index="2" unique_id=100217658 instance=ExtResource("9_db0ep")]
 position = Vector2(9630, 587)

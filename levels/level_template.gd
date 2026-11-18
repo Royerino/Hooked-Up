@@ -4,16 +4,18 @@ extends Node2D
 signal finished
 signal main_menu_requested
 
-const RESPAWN_TIME := 0.3
+const RESPAWN_TIME := 0.6
 
 var is_finished := false
 var is_respawning := false
+var play_zone_rect: Rect2
 
 @onready var player: CharacterBody2D = $PlayZone/Ganchez
 @onready var respawn_point: Marker2D = $PlayZone/Respawn
 @onready var zone_shape: CollisionShape2D = $PlayZone/CollisionShape2D
 @onready var checkpoints: Node2D = $PlayZone/Checkpoints
 @onready var death_sound: AudioStreamPlayer = $DeathSound
+@onready var death_particles: CPUParticles2D = $DeathParticles
 
 
 func _ready() -> void:
@@ -21,8 +23,8 @@ func _ready() -> void:
 	_connect_checkpoints()
 	var shape := zone_shape.shape as RectangleShape2D
 	var size: Vector2 = shape.size * zone_shape.global_scale
-	var rect := Rect2(zone_shape.global_position - size / 2.0, size)
-	player.set_camera_limits(rect)
+	play_zone_rect = Rect2(zone_shape.global_position - size / 2.0, size)
+	player.set_camera_limits(play_zone_rect)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -43,8 +45,9 @@ func _place_player() -> void:
 func _kill_player() -> void:
 	is_respawning = true
 	death_sound.play()
+	death_particles.global_position = Vector2(player.global_position.x, play_zone_rect.end.y)
+	death_particles.restart()
 	player.set_controllable(false)
-	# TODO: partículas + sonido de muerte (en el nivel, no en el jugador).
 	await get_tree().create_timer(RESPAWN_TIME).timeout
 	_place_player()
 	is_respawning = false

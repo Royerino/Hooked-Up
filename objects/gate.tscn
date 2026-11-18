@@ -11,6 +11,9 @@ size = Vector2(14, 54)
 atlas = ExtResource("2_srs85")
 region = Rect2(128, 92, 44, 14)
 
+[sub_resource type="Gradient" id="Gradient_sdcee"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Gate" type="Node2D" unique_id=1089960180]
 script = ExtResource("1_6x781")
 
@@ -30,3 +33,23 @@ texture = SubResource("AtlasTexture_yytfi")
 [node name="CloseSound" type="AudioStreamPlayer2D" parent="." unique_id=1714869737]
 stream = ExtResource("3_sdcee")
 bus = &"SFX"
+
+[node name="CloseDust" type="CPUParticles2D" parent="." unique_id=520944816]
+z_index = 1
+position = Vector2(0, 22)
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 5
+emission_points = PackedVector2Array(-2, 0, 2, 0)
+emission_normals = PackedVector2Array(-1, -0.2, 1, -0.2)
+emission_colors = PackedColorArray()
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+scale_amount_max = 2.0
+color = Color(0.6313726, 0.6313726, 0.6313726, 1)
+color_ramp = SubResource("Gradient_sdcee")

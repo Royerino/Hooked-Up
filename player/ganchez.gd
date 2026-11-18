@@ -26,7 +26,7 @@ var rope_length := 0.0
 var anchor_velocity := Vector2.ZERO
 var coyote_timer := 0.0
 
-@export var has_gun: bool = true
+@export var has_gun := true
 
 @onready var grappling_hook: GrapplingHook = $GrapplingHook
 @onready var body: AnimatedSprite2D = $Body
@@ -38,6 +38,7 @@ var coyote_timer := 0.0
 @onready var jump_sound: AudioStreamPlayer = $JumpSound
 @onready var land_sound: AudioStreamPlayer = $LandSound
 @onready var reel_sound: AudioStreamPlayer = $ReelSound
+@onready var dust_particles: CPUParticles2D = $DustParticles
 
 
 func _ready() -> void:
@@ -71,6 +72,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		coyote_timer = 0
 		jump_sound.play()
+		dust_particles.restart()
 	elif Input.is_action_just_released("jump") and velocity.y < 0 and not is_hooked:
 		velocity.y *= JUMP_CUT_FACTOR
 
@@ -85,6 +87,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor() and not was_on_floor and vert_velocity > LAND_SOUND_MIN_SPEED:
 		land_sound.play()
+		dust_particles.restart()
 
 	if is_hooked:
 		_correct_rope_position(delta)
