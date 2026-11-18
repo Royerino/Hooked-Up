@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cf750kugigfh5"]
+
+[ext_resource type="Script" uid="uid://ngkw8tvj33ga" path="res://objects/music_trigger.gd" id="1_ewwbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
+size = Vector2(20, 94)
+
+[node name="MusicTrigger" type="Area2D" unique_id=1656400831]
+collision_layer = 0
+script = ExtResource("1_ewwbl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1061950827]
+shape = SubResource("RectangleShape2D_yytfi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

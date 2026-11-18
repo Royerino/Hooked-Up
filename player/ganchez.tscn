@@ -222,8 +222,8 @@ texture_blocked = ExtResource("11_mfogd")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=26889158]
 stream = ExtResource("16_dxaja")
-volume_db = -12.0
-pitch_scale = 0.6
+volume_db = -6.0
+pitch_scale = 0.8
 bus = &"SFX"
 
 [node name="LandSound" type="AudioStreamPlayer" parent="." unique_id=2112852790]
@@ -234,7 +234,7 @@ bus = &"SFX"
 
 [node name="ReelSound" type="AudioStreamPlayer" parent="." unique_id=1336168411]
 stream = ExtResource("18_mg0pw")
-volume_db = -14.0
+volume_db = -8.0
 pitch_scale = 1.25
 bus = &"SFX"
 

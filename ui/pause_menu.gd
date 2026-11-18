@@ -5,6 +5,7 @@ signal restart_requested
 signal main_menu_requested
 
 var previous_mouse_mode := Input.MOUSE_MODE_VISIBLE
+var audio_bus_index := AudioServer.get_bus_index("Music")
 
 @onready var cont: GameButton = $CenterContainer/Frame/PanelContainer/VBoxContainer/ContinueButton
 
@@ -22,6 +23,10 @@ func _on_main_menu_button_pressed() -> void:
 	main_menu_requested.emit()
 
 
+func _exit_tree() -> void:
+	AudioServer.set_bus_effect_enabled(audio_bus_index, 0, false)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if visible:
@@ -35,6 +40,7 @@ func _handle_unpause() -> void:
 	visible = false
 	get_tree().paused = false
 	Input.mouse_mode = previous_mouse_mode
+	AudioServer.set_bus_effect_enabled(audio_bus_index, 0, false)
 
 
 func _handle_pause() -> void:
@@ -43,3 +49,4 @@ func _handle_pause() -> void:
 	previous_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	cont.grab_focus_silently()
+	AudioServer.set_bus_effect_enabled(audio_bus_index, 0, true)

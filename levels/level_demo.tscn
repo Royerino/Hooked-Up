@@ -20,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://d2djs1v7422p" path="res://assets/ui/inputs/keyboard_space.png" id="18_ndrjj"]
 [ext_resource type="Texture2D" uid="uid://7s67bswa3cln" path="res://assets/ui/inputs/keyboard_s.png" id="19_t8rk0"]
 [ext_resource type="Texture2D" uid="uid://bjnnakyjg6c3c" path="res://assets/ui/inputs/keyboard_r.png" id="20_t8rk0"]
+[ext_resource type="AudioStream" uid="uid://cupf5si348ow8" path="res://assets/audio/music/lab_level.ogg" id="21_1b6vn"]
+[ext_resource type="PackedScene" uid="uid://cf750kugigfh5" path="res://objects/music_trigger.tscn" id="21_t3yqv"]
+[ext_resource type="AudioStream" uid="uid://c3gayfd5wh4r0" path="res://assets/audio/music/time_trial.ogg" id="22_vldso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oelj6"]
 size = Vector2(27516, 1079)
@@ -963,3 +966,11 @@ icons = Array[Texture2D]([ExtResource("19_t8rk0")])
 position = Vector2(14123, 4)
 text = "Volver a la bandera"
 icons = Array[Texture2D]([ExtResource("20_t8rk0")])
+
+[node name="MusicTrigger" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="14" unique_id=1656400831 node_paths=PackedStringArray("music_player") instance=ExtResource("21_t3yqv")]
+position = Vector2(22602, 252)
+music_player = NodePath("../../Music")
+stream = ExtResource("22_vldso")
+
+[node name="Music" parent="." index="4" unique_id=1186976438]
+stream = ExtResource("21_1b6vn")

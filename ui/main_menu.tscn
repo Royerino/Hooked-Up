@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d18pdyhjv2rp7" path="res://assets/textures/Metal038_1K-PNG_Color.png" id="2_kaxbk"]
 [ext_resource type="Texture2D" uid="uid://daibsp4vk6iiq" path="res://assets/ui/logo/logo.png" id="3_0nobx"]
 [ext_resource type="PackedScene" uid="uid://5xfx3wb2xcw4" path="res://ui/menu_button.tscn" id="3_wk0pr"]
+[ext_resource type="AudioStream" uid="uid://pob8nn3a8q5p" path="res://assets/audio/music/main_menu.ogg" id="5_8uxxo"]
 
 [sub_resource type="Gradient" id="Gradient_jvnar"]
 interpolation_mode = 2
@@ -82,6 +83,11 @@ text = "Nueva partida"
 [node name="QuitButton" parent="CenterContainer/VBoxContainer/Buttons" unique_id=2017144961 instance=ExtResource("3_wk0pr")]
 layout_mode = 2
 text = "Salir al escritorio"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1957030996]
+stream = ExtResource("5_8uxxo")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

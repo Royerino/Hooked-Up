@@ -351,6 +351,12 @@ scale = Vector2(2.4506524, 12.9750595)
 stream = ExtResource("8_22dcj")
 bus = &"SFX"
 
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1186976438]
+process_mode = 3
+volume_db = -8.0
+autoplay = true
+bus = &"Music"
+
 [connection signal="body_exited" from="PlayZone" to="." method="_on_play_zone_body_exited"]
 [connection signal="reached" from="PlayZone/Goal" to="." method="_on_goal_reached"]
 [connection signal="main_menu_requested" from="PauseMenu" to="." method="_on_pause_menu_main_menu_requested"]
