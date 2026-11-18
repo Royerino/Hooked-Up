@@ -17,6 +17,7 @@ const CAMERA_BASE_OFFSET := Vector2(80, -60)
 const CAMERA_LOOK_FACTOR := 0.1
 const CAMERA_LOOK_MAX := 40.0
 const CAMERA_LOOK_SPEED := 120.0
+const LAND_SOUND_MIN_SPEED := 650.0
 
 var is_hooked := false
 var controllable := true
@@ -34,6 +35,9 @@ var coyote_timer := 0.0
 @onready var gun: Sprite2D = $WeaponPivot/Gun
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var crosshair: CanvasLayer = $Crosshair
+@onready var jump_sound: AudioStreamPlayer = $JumpSound
+@onready var land_sound: AudioStreamPlayer = $LandSound
+@onready var reel_sound: AudioStreamPlayer = $ReelSound
 
 
 func _ready() -> void:
@@ -66,14 +70,21 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and coyote_timer > 0:
 		velocity.y = JUMP_VELOCITY
 		coyote_timer = 0
+		jump_sound.play()
 	elif Input.is_action_just_released("jump") and velocity.y < 0 and not is_hooked:
 		velocity.y *= JUMP_CUT_FACTOR
 
 	# Gestión de velocidad.
 	var direction := Input.get_axis("move_left", "move_right")
 	_handle_horizontal_movement(direction, delta)
+	
+	var was_on_floor = is_on_floor()
+	var vert_velocity = velocity.y
 
 	move_and_slide()
+	
+	if is_on_floor() and not was_on_floor and vert_velocity > LAND_SOUND_MIN_SPEED:
+		land_sound.play()
 
 	if is_hooked:
 		_correct_rope_position(delta)
@@ -200,10 +211,16 @@ func _correct_rope_position(delta: float) -> void:
 
 func _reel_rope(delta: float) -> void:
 	var rope_input := Input.get_axis("rope_shorten", "rope_extend")
+	var previous_length = rope_length
 	var new_rope_length := rope_length + (rope_input * grappling_hook.ROPE_REEL_SPEED * delta)
 	var rope_max_limit := maxf(grappling_hook.ROPE_MAX_LENGTH, rope_length)
 	var rope_min_limit := minf(grappling_hook.ROPE_MIN_LENGTH, rope_length)
 	rope_length = clampf(new_rope_length, rope_min_limit, rope_max_limit)
+	if rope_input != 0 and previous_length != rope_length:
+		if !reel_sound.playing:
+			reel_sound.play()
+	else:
+		reel_sound.stop()
 
 
 func _on_grappling_hook_hooked(collision_point: Vector2) -> void:
@@ -216,6 +233,7 @@ func _on_grappling_hook_hooked(collision_point: Vector2) -> void:
 func _on_grappling_hook_released() -> void:
 	is_hooked = false
 	anchor_velocity = Vector2.ZERO
+	reel_sound.stop()
 
 
 func _update_camera_offset(delta: float) -> void:

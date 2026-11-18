@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmm5wg0p40s14" path="res://objects/gate.gd" id="1_6x781"]
 [ext_resource type="Texture2D" uid="uid://dp7ma63exskon" path="res://assets/tilesets/Pixel platformer industrial/tilemap_packed.png" id="2_srs85"]
+[ext_resource type="AudioStream" uid="uid://dtfwf78ec4blc" path="res://assets/audio/sfx/gate_close.wav" id="3_sdcee"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(14, 54)
@@ -25,3 +26,7 @@ position = Vector2(2.1589855e-07, -4.9391828)
 rotation = 1.5707964
 scale = Vector2(1.2245083, 1)
 texture = SubResource("AtlasTexture_yytfi")
+
+[node name="CloseSound" type="AudioStreamPlayer2D" parent="." unique_id=1714869737]
+stream = ExtResource("3_sdcee")
+bus = &"SFX"

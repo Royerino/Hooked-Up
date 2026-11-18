@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dowe88doehtk1"]
+
+[ext_resource type="Script" uid="uid://d2pi8x403fwbr" path="res://ui/ui_sounds.gd" id="1_ivojc"]
+[ext_resource type="AudioStream" uid="uid://b5yvjtta84e5o" path="res://assets/audio/sfx/ui_click.ogg" id="2_ux57x"]
+[ext_resource type="AudioStream" uid="uid://vjr000fvy00k" path="res://assets/audio/sfx/ui_hover.ogg" id="3_ias37"]
+
+[node name="UiSounds" type="Node" unique_id=2083697998]
+process_mode = 3
+script = ExtResource("1_ivojc")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="." unique_id=1914355135]
+stream = ExtResource("2_ux57x")
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=368673315]
+stream = ExtResource("3_ias37")
+bus = &"SFX"

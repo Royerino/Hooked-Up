@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c62o64w3vkxbp" path="res://player/gun_pickup.gd" id="1_orbym"]
 [ext_resource type="Texture2D" uid="uid://c7xoutsxnuie3" path="res://assets/player/gun.png" id="2_6i183"]
+[ext_resource type="AudioStream" uid="uid://srudyrrf1pll" path="res://assets/audio/sfx/gun_pickup.wav" id="3_6i183"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yytfi"]
 size = Vector2(32, 40)
@@ -16,5 +17,9 @@ texture = ExtResource("2_6i183")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=740455958]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_yytfi")
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=880596505]
+stream = ExtResource("3_6i183")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

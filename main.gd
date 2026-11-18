@@ -56,6 +56,7 @@ func _on_level_main_menu_requested() -> void:
 
 func _return_to_main_menu() -> void:
 	get_tree().paused = false
+	current_level.is_finished = true
 	remove_child(current_level)
 	current_level.queue_free()
 	current_level_index = 0

@@ -13,6 +13,7 @@ var is_respawning := false
 @onready var respawn_point: Marker2D = $PlayZone/Respawn
 @onready var zone_shape: CollisionShape2D = $PlayZone/CollisionShape2D
 @onready var checkpoints: Node2D = $PlayZone/Checkpoints
+@onready var death_sound: AudioStreamPlayer = $DeathSound
 
 
 func _ready() -> void:
@@ -41,8 +42,9 @@ func _place_player() -> void:
 
 func _kill_player() -> void:
 	is_respawning = true
+	death_sound.play()
 	player.set_controllable(false)
-	# TODO: partículas + VFX + sonido de muerte (en el nivel, no en el jugador).
+	# TODO: partículas + sonido de muerte (en el nivel, no en el jugador).
 	await get_tree().create_timer(RESPAWN_TIME).timeout
 	_place_player()
 	is_respawning = false

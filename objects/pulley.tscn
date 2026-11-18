@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://by7n32tqorukw" path="res://objects/pulley.gd" id="1_xougj"]
 [ext_resource type="Texture2D" uid="uid://l6mvmrosidhv" path="res://assets/tilesets/Pixel platformer industrial/chain.png" id="2_cse2e"]
 [ext_resource type="PackedScene" uid="uid://bsnjnkx5fg704" path="res://objects/hook_point.tscn" id="2_q6dps"]
+[ext_resource type="AudioStream" uid="uid://b014yyacgkjjb" path="res://assets/audio/sfx/pulley_tick.ogg" id="4_kdovh"]
 
 [node name="Pulley" type="Node2D" unique_id=1647530750]
 script = ExtResource("1_xougj")
@@ -17,6 +18,13 @@ region_enabled = true
 region_rect = Rect2(0, 0, 18, 18)
 
 [node name="HookPoint" parent="." unique_id=435721103 instance=ExtResource("2_q6dps")]
+
+[node name="TickSound" type="AudioStreamPlayer2D" parent="." unique_id=1017292965]
+stream = ExtResource("4_kdovh")
+pitch_scale = 3.0
+max_distance = 1000.0
+attenuation = 0.5
+bus = &"SFX"
 
 [connection signal="hooked" from="HookPoint" to="." method="_on_hook_point_hooked"]
 [connection signal="released" from="HookPoint" to="." method="_on_hook_point_released"]

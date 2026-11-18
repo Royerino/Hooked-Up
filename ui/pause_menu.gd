@@ -6,7 +6,7 @@ signal main_menu_requested
 
 var previous_mouse_mode := Input.MOUSE_MODE_VISIBLE
 
-@onready var cont: Button = $CenterContainer/Frame/PanelContainer/VBoxContainer/ContinueButton
+@onready var cont: GameButton = $CenterContainer/Frame/PanelContainer/VBoxContainer/ContinueButton
 
 
 func _on_continue_button_pressed() -> void:
@@ -42,4 +42,4 @@ func _handle_pause() -> void:
 	get_tree().paused = true
 	previous_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	cont.grab_focus()
+	cont.grab_focus_silently()

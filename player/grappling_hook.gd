@@ -25,6 +25,9 @@ var collision_offset: Vector2
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var rope: Line2D = $Rope
 @onready var hook: Sprite2D = $Hook
+@onready var attach_sound: AudioStreamPlayer = $AttachSound
+@onready var block_sound: AudioStreamPlayer = $BlockSound
+@onready var shoot_sound: AudioStreamPlayer = $ShootSound
 
 
 func _ready() -> void:
@@ -70,6 +73,7 @@ func shoot() -> void:
 	if raycast.is_colliding() and is_hookable(raycast.get_collider()):
 		target = raycast.get_collider()
 
+	shoot_sound.play()
 	state = State.FLYING
 
 
@@ -178,6 +182,8 @@ func _manage_collision() -> void:
 		_set_hook_position(point)
 		hooked.emit(point)
 		collision_node.hooked.emit(character)
+		attach_sound.play()
 	else:
 		blocked.emit(point, normal)
 		retrieve()
+		block_sound.play()

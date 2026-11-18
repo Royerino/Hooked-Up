@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cbhpn0doaxs7b" path="res://assets/ui/sign_plate.png" id="1_nh5jk"]
 [ext_resource type="Texture2D" uid="uid://bin0mk507ejro" path="res://assets/ui/sign_plate_hover.png" id="2_158vp"]
+[ext_resource type="Script" uid="uid://b2ctvkyc2oiy3" path="res://ui/menu_button.gd" id="3_158vp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejwgg"]
 content_margin_left = 6.0
@@ -44,3 +45,8 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_avurv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fob5h")
 theme_override_styles/focus = SubResource("StyleBoxTexture_fob5h")
 text = "Lorem ipsum"
+script = ExtResource("3_158vp")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

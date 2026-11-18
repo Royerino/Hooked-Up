@@ -4,10 +4,13 @@ class_name Pulley extends Node2D
 signal progress_changed(progress: float)
 
 const CHAIN_REST_LENGTH := 18.0
+const TICK_INTERVAL_FAST := 0.12
+const TICK_INTERVAL_SLOW := 0.5
 
 var progress := 0.0
 var hanging_body: CharacterBody2D = null
 var jammed := false
+var tick_timer := 0.0
 
 @export var travel_distance := 64.0
 @export var down_time := 0.4
@@ -15,6 +18,7 @@ var jammed := false
 
 @onready var hook_point: HookPoint = $HookPoint
 @onready var chain: Sprite2D = $Chain
+@onready var tick_sound: AudioStreamPlayer2D = $TickSound
 
 
 func _physics_process(delta: float) -> void:
@@ -33,6 +37,16 @@ func _physics_process(delta: float) -> void:
 	var previous_progress := progress
 	
 	progress = move_toward(progress, target, speed * delta)
+	
+	if not is_body_hanging and progress < previous_progress:
+		tick_timer -= delta
+		if tick_timer <= 0:
+			tick_sound.play()
+			tick_timer = lerpf(TICK_INTERVAL_FAST, TICK_INTERVAL_SLOW, progress)
+
+	if is_body_hanging:
+		tick_timer = 0
+	
 	hook_point.position.y = travel_distance * ease(progress, -2.0)
 	
 	chain.region_rect.size.y = hook_point.position.y + CHAIN_REST_LENGTH
