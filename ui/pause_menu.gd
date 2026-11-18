@@ -4,10 +4,14 @@ extends CanvasLayer
 signal restart_requested
 signal main_menu_requested
 
+const OPTIONS_MENU_SCENE := preload("res://ui/options_menu.tscn")
+
 var previous_mouse_mode := Input.MOUSE_MODE_VISIBLE
 var audio_bus_index := AudioServer.get_bus_index("Music")
 
-@onready var cont: GameButton = $CenterContainer/Frame/PanelContainer/VBoxContainer/ContinueButton
+@onready var continue_button: GameButton = $CenterContainer/Frame/PanelContainer/VBoxContainer/ContinueButton
+@onready var options_button: GameButton = $CenterContainer/Frame/PanelContainer/VBoxContainer/OptionsButton
+@onready var center_container: CenterContainer = $CenterContainer
 
 
 func _on_continue_button_pressed() -> void:
@@ -48,5 +52,17 @@ func _handle_pause() -> void:
 	get_tree().paused = true
 	previous_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	cont.grab_focus_silently()
+	continue_button.grab_focus_silently()
 	AudioServer.set_bus_effect_enabled(audio_bus_index, 0, true)
+
+
+func _on_options_button_pressed() -> void:
+	var options_menu := OPTIONS_MENU_SCENE.instantiate()
+	add_child(options_menu)
+	options_menu.closed.connect(_on_options_closed)
+	center_container.visible = false
+
+
+func _on_options_closed() -> void:
+	center_container.visible = true
+	options_button.grab_focus_silently()

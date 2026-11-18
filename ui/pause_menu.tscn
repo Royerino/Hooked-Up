@@ -91,6 +91,10 @@ text = "Continuar"
 layout_mode = 2
 text = "Volver a la bandera"
 
+[node name="OptionsButton" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=1264517500 instance=ExtResource("3_avurv")]
+layout_mode = 2
+text = "Opciones"
+
 [node name="MainMenuButton" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=393715358 instance=ExtResource("3_avurv")]
 layout_mode = 2
 text = "Menú principal"
@@ -121,4 +125,5 @@ text = "para continuar"
 
 [connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

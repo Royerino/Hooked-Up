@@ -80,6 +80,10 @@ theme_override_constants/separation = 8
 layout_mode = 2
 text = "Nueva partida"
 
+[node name="OptionsButton" parent="CenterContainer/VBoxContainer/Buttons" unique_id=2045051532 instance=ExtResource("3_wk0pr")]
+layout_mode = 2
+text = "Opciones"
+
 [node name="QuitButton" parent="CenterContainer/VBoxContainer/Buttons" unique_id=2017144961 instance=ExtResource("3_wk0pr")]
 layout_mode = 2
 text = "Salir al escritorio"
@@ -90,4 +94,5 @@ autoplay = true
 bus = &"Music"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

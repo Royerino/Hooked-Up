@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://bwp72od1aa8eh"]
+
+[ext_resource type="Script" uid="uid://bdpubjin6sxpd" path="res://ui/options_menu.gd" id="1_03u0o"]
+[ext_resource type="Texture2D" uid="uid://donl5plk8de71" path="res://assets/ui/sign_plate_2x.png" id="2_stwrb"]
+[ext_resource type="PackedScene" uid="uid://5xfx3wb2xcw4" path="res://ui/menu_button.tscn" id="3_4ja32"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vbjsr"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("2_stwrb")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+draw_center = false
+
+[sub_resource type="Gradient" id="Gradient_jvnar"]
+interpolation_mode = 2
+colors = PackedColorArray(0.18431373, 0.43529412, 0.81960785, 1, 0.078431375, 0.1882353, 0.37254903, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lpidc"]
+gradient = SubResource("Gradient_jvnar")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1.1, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jvnar"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = SubResource("GradientTexture2D_lpidc")
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=709762003]
+process_mode = 3
+layer = 11
+script = ExtResource("1_03u0o")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1192325574]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2045108476]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frame" type="PanelContainer" parent="CenterContainer" unique_id=1624258077]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vbjsr")
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/Frame" unique_id=43399526]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jvnar")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Frame/PanelContainer" unique_id=254247795]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=584908483]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "Opciones"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=2059714158]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=1327435199]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer" unique_id=847195032]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "Música"
+horizontal_alignment = 2
+
+[node name="MusicSlider" type="HSlider" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer" unique_id=839786990]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=1558468940]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1072681858]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "Efectos"
+horizontal_alignment = 2
+
+[node name="SfxSlider" type="HSlider" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=11146888]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=1137832847]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer3" unique_id=1515354793]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0.0015737793, 0.14923254, 0.48699486, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "cámara sigue al ratón"
+horizontal_alignment = 2
+
+[node name="CameraCheck" type="CheckButton" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer3" unique_id=2135227985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+
+[node name="Spacer2" type="Control" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=1478204908]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/Frame/PanelContainer/VBoxContainer" unique_id=516580479]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="BackButton" parent="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer4" unique_id=1580650568 instance=ExtResource("3_4ja32")]
+layout_mode = 2
+text = "Volver"
+
+[connection signal="value_changed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer2/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="toggled" from="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer3/CameraCheck" to="." method="_on_camera_check_toggled"]
+[connection signal="pressed" from="CenterContainer/Frame/PanelContainer/VBoxContainer/HBoxContainer4/BackButton" to="." method="_on_back_button_pressed"]

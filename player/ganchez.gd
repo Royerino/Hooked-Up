@@ -243,5 +243,6 @@ func _update_camera_offset(delta: float) -> void:
 	var target_offset := CAMERA_BASE_OFFSET
 	var screen_center := get_viewport().get_visible_rect().size / 2.0
 	var mouse_from_center := get_viewport().get_mouse_position() - screen_center
-	target_offset += (mouse_from_center * CAMERA_LOOK_FACTOR).limit_length(CAMERA_LOOK_MAX)
-	camera_2d.offset = camera_2d.offset.move_toward(target_offset, CAMERA_LOOK_SPEED * delta)
+	if Settings.camera_follows_mouse:
+		target_offset += (mouse_from_center * CAMERA_LOOK_FACTOR).limit_length(CAMERA_LOOK_MAX)
+		camera_2d.offset = camera_2d.offset.move_toward(target_offset, CAMERA_LOOK_SPEED * delta)
