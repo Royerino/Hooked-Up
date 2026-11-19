@@ -5,6 +5,7 @@ const SETTINGS_PATH := "user://settings.cfg"
 const MUSIC_BASE_DB := -6.0
 
 var music_volume := 1.0
+var music_fade := 1.0
 var sfx_volume := 1.0
 var camera_follows_mouse := true
 
@@ -40,5 +41,13 @@ func apply_volumes() -> void:
 	var music_bus_index := AudioServer.get_bus_index("Music")
 	var sfx_bus_index := AudioServer.get_bus_index("SFX")
 	
-	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(music_volume) + MUSIC_BASE_DB)
+	AudioServer.set_bus_volume_db(
+		music_bus_index, 
+		linear_to_db(music_volume * music_fade) + MUSIC_BASE_DB
+	)
 	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(sfx_volume))
+
+
+func set_music_fade(value: float) -> void:
+	music_fade = value
+	apply_volumes()
