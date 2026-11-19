@@ -5,6 +5,7 @@ var current_level_index := 0
 var current_level: Node
 var main_menu: Control
 var end_menu: Control
+var is_transitioning := false
 
 @export var scenes: Array[PackedScene]
 @export var main_menu_scene: PackedScene
@@ -13,7 +14,17 @@ var end_menu: Control
 
 func _ready() -> void:
 	_show_main_menu()
-	
+
+
+func _transition(change: Callable) -> void:
+	if is_transitioning:
+		return
+	is_transitioning = true
+	await Transition.cover()
+	change.call()
+	Transition.uncover()
+	is_transitioning = false
+
 
 func _show_main_menu() -> void:
 	main_menu = main_menu_scene.instantiate()
@@ -22,8 +33,10 @@ func _show_main_menu() -> void:
 
 	
 func _on_main_menu_new_game_requested() -> void:
-	main_menu.queue_free()
-	_load_level()
+	_transition(func():
+		main_menu.queue_free()
+		_load_level()
+	)
 
 
 func _load_level() -> void:
@@ -45,9 +58,11 @@ func _on_level_finished() -> void:
 
 
 func _change_level() -> void:
-	remove_child(current_level)
-	current_level.queue_free()
-	_load_level()
+	_transition(func():
+		remove_child(current_level)
+		current_level.queue_free()
+		_load_level()
+	)
 
 
 func _on_level_main_menu_requested() -> void:
@@ -55,15 +70,19 @@ func _on_level_main_menu_requested() -> void:
 
 
 func _return_to_main_menu() -> void:
-	get_tree().paused = false
-	current_level.is_finished = true
-	remove_child(current_level)
-	current_level.queue_free()
-	current_level_index = 0
-	_show_main_menu()
+	_transition(func():
+		get_tree().paused = false
+		current_level.is_finished = true
+		remove_child(current_level)
+		current_level.queue_free()
+		current_level_index = 0
+		_show_main_menu()
+	)
 
 
 func _on_end_screen_main_menu_requested() -> void:
-	end_menu.queue_free()
-	current_level_index = 0
-	_show_main_menu()
+	_transition(func():
+		end_menu.queue_free()
+		current_level_index = 0
+		_show_main_menu()
+	)
