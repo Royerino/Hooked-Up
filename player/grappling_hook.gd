@@ -57,6 +57,15 @@ func shoot() -> void:
 		reset()
 	if state != State.IDLE:
 		return
+	
+	# Si el arma atraviesa un muro, el disparo se bloquea.
+	raycast.global_position = muzzle.get_parent().global_position
+	raycast.target_position = muzzle.global_position - raycast.global_position
+	raycast.force_raycast_update()
+	if raycast.is_colliding() and not is_hookable(raycast.get_collider()):
+		block_sound.play()
+		blocked.emit(raycast.get_collision_point(), raycast.get_collision_normal())
+		return
 
 	rope.visible = true
 	hook.visible = true
