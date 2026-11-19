@@ -590,7 +590,7 @@ tile_map_data = PackedByteArray("AAAAABQAAgAEAAEAAAABABQAAgAEAAEAAAACABQAAgAEAAE
 tile_set = SubResource("TileSet_lah05")
 
 [node name="Respawn" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="2" unique_id=1697890633]
-position = Vector2(27140, 169)
+position = Vector2(64, 326)
 
 [node name="Ganchez" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="3" unique_id=87218500]
 position = Vector2(64, 310)
@@ -823,6 +823,8 @@ position = Vector2(22824, 120)
 travel_distance = 120.0
 down_time = 2.0
 up_time = 55.0
+tick_max_distance = 5000.0
+tick_attenuation = 0.3
 
 [node name="MovingPlatforms" type="Node2D" parent="PlayZone" parent_id_path=PackedInt32Array(1508574074) index="11" unique_id=219634311]
 

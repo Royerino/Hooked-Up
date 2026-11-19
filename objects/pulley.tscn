@@ -21,10 +21,8 @@ region_rect = Rect2(0, 0, 18, 18)
 
 [node name="TickSound" type="AudioStreamPlayer2D" parent="." unique_id=1017292965]
 stream = ExtResource("4_kdovh")
-volume_db = 4.0
 pitch_scale = 2.5
-max_distance = 4000.0
-attenuation = 0.1
+max_distance = 400.0
 bus = &"SFX"
 
 [connection signal="hooked" from="HookPoint" to="." method="_on_hook_point_hooked"]

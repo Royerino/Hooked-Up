@@ -15,10 +15,19 @@ var tick_timer := 0.0
 @export var travel_distance := 64.0
 @export var down_time := 0.4
 @export var up_time := 2.0
+@export var tick_max_distance  := 1000.0
+@export var tick_attenuation  := 1.0
+@export var tick_volume_db  := 4.0
 
 @onready var hook_point: HookPoint = $HookPoint
 @onready var chain: Sprite2D = $Chain
 @onready var tick_sound: AudioStreamPlayer2D = $TickSound
+
+
+func _ready() -> void:
+	tick_sound.max_distance = tick_max_distance
+	tick_sound.attenuation = tick_attenuation
+	tick_sound.volume_db = tick_volume_db
 
 
 func _physics_process(delta: float) -> void:
